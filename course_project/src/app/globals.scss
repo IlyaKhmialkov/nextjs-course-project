@@ -1,0 +1,32 @@
+@use '~@colors' as *;
+
+html,
+body {
+	max-width: 100vw;
+	overflow-x: hidden;
+	background-color: $bgPrimary;
+	font-family: var(--font-open-sans);
+}
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+button {
+	cursor: pointer;
+}
+
+.oswald {
+	font-family: var(--font-oswald);
+}
+
+.openSans {
+	font-family: var(--font-open-sans);
+}
