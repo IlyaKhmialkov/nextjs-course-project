@@ -1,0 +1,42 @@
+@use '@colors' as *;
+
+.main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	color: $text;
+}
+.formContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	margin: 0 1.5rem;
+	padding: 1rem;
+	gap: 1rem;
+
+	width: 400px;
+
+	background-color: $bgSecondary;
+	border-radius: 1rem;
+	border: 3px solid $border;
+
+	h2 {
+		font-size: 2rem;
+	}
+
+	hr {
+		height: 1px;
+		background-color: $border;
+	}
+}
+
+.regDiv {
+	display: flex;
+	gap: 4px;
+
+	a {
+		text-decoration: underline;
+	}
+}

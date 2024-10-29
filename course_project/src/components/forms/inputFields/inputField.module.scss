@@ -1,0 +1,49 @@
+@use '@colors' as *;
+
+.inputDiv {
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+
+	label {
+		position: absolute;
+		height: 100%;
+		width: 30px;
+	}
+
+	.iconDiv {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		border: none;
+		border-radius: 4px 0 0 4px;
+		background-color: $border;
+
+		color: $bgPrimary;
+		min-width: 30px;
+	}
+
+	input {
+		padding: 4px 6px;
+		width: 100%;
+		height: 30px;
+
+		border: 1px solid $border;
+		border-radius: 0 4px 4px 0;
+		color: $bgPrimary;
+		background-color: $text;
+
+		font-size: 1.1rem;
+	}
+	input:focus {
+		outline: none;
+	}
+
+	.passwordDiv {
+		border-radius: 0 4px 4px 0;
+	}
+	.passwordInput {
+		border-radius: 0;
+	}
+}
