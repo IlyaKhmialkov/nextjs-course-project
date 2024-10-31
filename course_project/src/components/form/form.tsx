@@ -1,11 +1,14 @@
 'use client'
 import { useRef } from 'react'
 import styles from './form.module.scss'
-
 import { EmailInputField } from './inputFields/emailInputField'
 import { PasswordInputField } from './inputFields/passwordInputField'
 
-export function AuthForm() {
+interface IFormProps {
+	buttonText: string
+}
+
+export function Form({ buttonText }: IFormProps) {
 	const emailInput = useRef<HTMLInputElement>(null)
 	const passwordInput = useRef<HTMLInputElement>(null)
 
@@ -16,7 +19,7 @@ export function AuthForm() {
 			<PasswordInputField currentRef={passwordInput} />
 
 			<button type='button' className={styles.submitButton}>
-				Sign in
+				{buttonText}
 			</button>
 		</form>
 	)

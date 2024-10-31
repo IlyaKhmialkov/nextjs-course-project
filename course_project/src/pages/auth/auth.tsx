@@ -1,4 +1,4 @@
-import { AuthForm } from '@/components/forms/auth.form'
+import { Form } from '@/components/form/form'
 import Link from 'next/link'
 import styles from './auth.module.scss'
 
@@ -6,9 +6,9 @@ export function Auth() {
 	return (
 		<main className={`${styles.main}`}>
 			<div className={styles.formContainer}>
-				<h2>log in</h2>
+				<h2>Log in</h2>
 				<hr />
-				<AuthForm />
+				<Form buttonText='Sign in' />
 				<hr />
 				<div className={styles.regDiv}>
 					<p>Don't have an account?</p>

@@ -1,0 +1,52 @@
+@use '@colors' as *;
+
+.linksList {
+	list-style-type: none;
+
+	height: 100%;
+
+	display: flex;
+	gap: 20px;
+
+	li {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+.burgerButton {
+	background-color: $bgSecondary;
+	border: none;
+	height: 100%;
+	color: $border;
+
+	display: none;
+}
+
+@media (max-width: 870px) {
+	.linksList {
+		flex-direction: column;
+
+		position: absolute;
+		top: 70px;
+		right: 0;
+		max-height: fit-content;
+
+		background-color: $bgSecondary;
+		padding: 20px 40px;
+		border-radius: 0 0 0 15px;
+		border-top: 2px solid $border;
+
+		transition: transform 1s ease-out;
+		transform: translate(100%);
+	}
+
+	.burgerButton {
+		display: block;
+	}
+
+	.linksList.active {
+		transform: translate(0%);
+	}
+}

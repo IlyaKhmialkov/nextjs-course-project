@@ -5,7 +5,9 @@ body {
 	max-width: 100vw;
 	overflow-x: hidden;
 	background-color: $bgPrimary;
+	color: $text;
 	font-family: var(--font-open-sans);
+	min-height: 100vh;
 }
 
 * {
@@ -35,4 +37,8 @@ button {
 
 .openSans {
 	font-family: var(--font-open-sans);
+}
+
+.hidden {
+	display: none;
 }

@@ -1,0 +1,38 @@
+@use '@colors' as *;
+
+.footer {
+	height: 70px;
+	padding: 0 20px;
+	background-color: $bgSecondary;
+
+	display: flex;
+	justify-content: space-between;
+
+	.contacts {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+
+		div {
+			display: flex;
+			align-items: center;
+			gap: 5px;
+
+			font-size: 20px;
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	.footer .contacts div {
+		font-size: 16px;
+	}
+}
+@media (max-width: 564px) {
+	.footer {
+		justify-content: center;
+	}
+	.logoDiv {
+		display: none;
+	}
+}

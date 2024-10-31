@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import localFont from 'next/font/local'
 import './globals.scss'
 
@@ -16,6 +16,14 @@ export const openSans = localFont({
 export const metadata: Metadata = {
 	title: 'Tren Master',
 	description: 'Gym for those who are always one step ahead',
+}
+
+export const viewport: Viewport = {
+	themeColor: 'black',
+	width: 'device-width',
+	initialScale: 1,
+	maximumScale: 1,
+	userScalable: false,
 }
 
 export default function RootLayout({
