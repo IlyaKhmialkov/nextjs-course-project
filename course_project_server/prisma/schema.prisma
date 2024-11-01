@@ -1,0 +1,124 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Subscription {
+  id        Int     @id      @default(autoincrement())
+  name      String  @unique
+  duration  Int
+  price     Float
+
+  clients   SubscriptionClient[]
+}
+
+model SubscriptionClient {
+  clientId        Int 
+  subscriptionId  Int
+  daysLeft        Int
+
+  client          Client        @relation(fields: [clientId], references: [id])
+  subscription    Subscription  @relation(fields: [subscriptionId], references: [id])
+
+  @@id([subscriptionId, clientId])
+}
+
+model Client {
+  id             Int       @id @default(autoincrement())
+  email          String    @unique
+  passwordHash   String
+  name           String
+  age            Int
+  gender         String
+
+  trainerId      Int?
+  trainer        Trainer?  @relation(fields: [trainerId], references: [id])
+  attendance     Attendance[]
+  trainingPrograms TrainingProgram[]
+  subscriptions  SubscriptionClient[]
+}
+
+model Attendance {
+  id         Int     @id @default(autoincrement())
+  client     Client  @relation(fields: [clientId], references: [id])
+  clientId   Int
+  date       DateTime
+  spentTime  DateTime
+}
+
+model Trainer {
+  id            Int     @id @default(autoincrement())
+  email         String  @unique
+  passwordHash  String
+  name          String
+  age           Int
+  gender        String
+  experience    Int
+  price         Float
+
+  clients       Client[]
+}
+
+model TrainingProgram {
+  id                Int       @id  @default(autoincrement())
+  name              String
+  date              DateTime
+  time              DateTime
+
+  clientId          Int
+  client            Client    @relation(fields: [clientId], references: [id])
+  exersiseMachines  ProgramMachine[]
+  musculeGroups     ProgramMuscule[]
+}
+
+model ProgramMachine {
+  trainingProgramId  Int
+  exersiseMachineId  Int
+
+  trainingProgram    TrainingProgram  @relation(fields: [trainingProgramId], references: [id])
+  exersiseMachine    ExersiseMachine  @relation(fields: [exersiseMachineId], references: [id])
+
+  @@id([trainingProgramId, exersiseMachineId])
+}
+
+model ExersiseMachine {
+  id                Int     @id  @default(autoincrement())
+  name              String  @unique
+  amount            Int
+  pictureLink       String
+
+  trainingPrograms  ProgramMachine[]
+  musculeGroups     MachineMuscule[]
+}
+
+model MachineMuscule {
+  musculeGroupId     Int
+  exersiseMachineId  Int
+
+  musculeGroup       MusculeGroup     @relation(fields: [musculeGroupId], references: [id])
+  exersiseMachine    ExersiseMachine  @relation(fields: [exersiseMachineId], references: [id])
+
+  @@id([musculeGroupId, exersiseMachineId])
+}
+
+model MusculeGroup {
+  id                Int     @id  @default(autoincrement())
+  name              String  @unique
+
+  trainingPrograms  ProgramMuscule[]
+  exersiseMachines  MachineMuscule[]
+}
+
+model ProgramMuscule {
+  trainingProgramId  Int
+  musculeGroupId     Int
+
+  trainingProgram    TrainingProgram  @relation(fields: [trainingProgramId], references: [id])
+  musculeGroup       MusculeGroup     @relation(fields: [musculeGroupId], references: [id])
+
+  @@id([trainingProgramId, musculeGroupId])
+}
