@@ -6,26 +6,32 @@ import { PrismaService } from 'src/prisma.service'
 export class ExersiseMachinesService {
 	constructor(private prisma: PrismaService) {}
 
-	async getAllExersiseMachines(): Promise<ExersiseMachine[]> {
+	getAllExersiseMachines(): Promise<ExersiseMachine[]> {
 		return this.prisma.exersiseMachine.findMany()
 	}
-	async getExersiseMachine(id: number): Promise<ExersiseMachine | null> {
+	getExersiseMachine(id: number): Promise<ExersiseMachine | null> {
 		return this.prisma.exersiseMachine.findUnique({
 			where: { id },
 		})
 	}
-	async getExersiseMachinesByName(name: string): Promise<ExersiseMachine[]> {
+	getExersiseMachinesByName(name: string): Promise<ExersiseMachine[]> {
 		return this.prisma.exersiseMachine.findMany({
 			where: { name: { contains: name, mode: 'insensitive' } },
 		})
 	}
-	async createExersiseMachine(name: string, amount: number, pictureLink: string): Promise<ExersiseMachine> {
+	createExersiseMachine(
+		name: string,
+		amount: number,
+		pictureLink: string,
+		description: string
+	): Promise<ExersiseMachine> {
 		try {
 			return this.prisma.exersiseMachine.create({
 				data: {
 					name,
 					amount,
 					pictureLink,
+					description,
 				},
 			})
 		} catch (error) {
@@ -35,11 +41,17 @@ export class ExersiseMachinesService {
 			throw error
 		}
 	}
-	async updateExersiseMachine(id: number, name: string, amount: number, pictureLink: string): Promise<ExersiseMachine> {
+	updateExersiseMachine(
+		id: number,
+		name: string,
+		amount: number,
+		pictureLink: string,
+		description: string
+	): Promise<ExersiseMachine> {
 		try {
 			return this.prisma.exersiseMachine.update({
 				where: { id },
-				data: { name, amount, pictureLink },
+				data: { name, amount, pictureLink, description },
 			})
 		} catch (error) {
 			if (error.code === 'P2002') {
@@ -48,7 +60,7 @@ export class ExersiseMachinesService {
 			throw error
 		}
 	}
-	async deleteExersiseMachine(id: number): Promise<ExersiseMachine> {
+	deleteExersiseMachine(id: number): Promise<ExersiseMachine> {
 		return this.prisma.exersiseMachine.delete({
 			where: { id },
 		})

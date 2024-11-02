@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
 }
 
 datasource db {
@@ -72,7 +73,7 @@ model TrainingProgram {
   clientId          Int
   client            Client    @relation(fields: [clientId], references: [id])
   exersiseMachines  ProgramMachine[]
-  musculeGroups     ProgramMuscule[]
+  muscleGroups     ProgramMuscle[]
 }
 
 model ProgramMachine {
@@ -90,35 +91,36 @@ model ExersiseMachine {
   name              String  @unique
   amount            Int
   pictureLink       String
+  description       String
 
   trainingPrograms  ProgramMachine[]
-  musculeGroups     MachineMuscule[]
+  muscleGroups     MachineMuscle[]
 }
 
-model MachineMuscule {
-  musculeGroupId     Int
+model MachineMuscle {
+  muscleGroupId     Int
   exersiseMachineId  Int
 
-  musculeGroup       MusculeGroup     @relation(fields: [musculeGroupId], references: [id])
+  muscleGroup       MuscleGroup     @relation(fields: [muscleGroupId], references: [id])
   exersiseMachine    ExersiseMachine  @relation(fields: [exersiseMachineId], references: [id])
 
-  @@id([musculeGroupId, exersiseMachineId])
+  @@id([muscleGroupId, exersiseMachineId])
 }
 
-model MusculeGroup {
+model MuscleGroup {
   id                Int     @id  @default(autoincrement())
   name              String  @unique
 
-  trainingPrograms  ProgramMuscule[]
-  exersiseMachines  MachineMuscule[]
+  trainingPrograms  ProgramMuscle[]
+  exersiseMachines  MachineMuscle[]
 }
 
-model ProgramMuscule {
+model ProgramMuscle {
   trainingProgramId  Int
-  musculeGroupId     Int
+  muscleGroupId     Int
 
   trainingProgram    TrainingProgram  @relation(fields: [trainingProgramId], references: [id])
-  musculeGroup       MusculeGroup     @relation(fields: [musculeGroupId], references: [id])
+  muscleGroup       MuscleGroup     @relation(fields: [muscleGroupId], references: [id])
 
-  @@id([trainingProgramId, musculeGroupId])
+  @@id([trainingProgramId, muscleGroupId])
 }

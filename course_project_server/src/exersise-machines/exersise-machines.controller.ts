@@ -25,9 +25,10 @@ export class ExersiseMachinesController {
 	createExersiseMachine(
 		@Body('name') name: string,
 		@Body('amount') amount: number,
-		@Body('pictureLink') pictureLink: string
+		@Body('pictureLink') pictureLink: string,
+		@Body('description') description: string
 	) {
-		return this.exersiseMachinesService.createExersiseMachine(name, amount, pictureLink)
+		return this.exersiseMachinesService.createExersiseMachine(name, amount, pictureLink, description)
 	}
 
 	@Put(':id')
@@ -35,10 +36,11 @@ export class ExersiseMachinesController {
 		@Param('id') id: string,
 		@Body('name') name: string,
 		@Body('amount') amount: number,
-		@Body('pictureLink') pictureLink: string
+		@Body('pictureLink') pictureLink: string,
+		@Body('description') description: string
 	) {
 		const machineId = parseInt(id)
-		return this.exersiseMachinesService.updateExersiseMachine(machineId, name, amount, pictureLink)
+		return this.exersiseMachinesService.updateExersiseMachine(machineId, name, amount, pictureLink, description)
 	}
 
 	@Delete(':id')
