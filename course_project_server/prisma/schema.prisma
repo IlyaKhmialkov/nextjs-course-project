@@ -72,21 +72,21 @@ model TrainingProgram {
 
   clientId          Int
   client            Client    @relation(fields: [clientId], references: [id])
-  exersiseMachines  ProgramMachine[]
+  exerciseMachines  ProgramMachine[]
   muscleGroups     ProgramMuscle[]
 }
 
 model ProgramMachine {
   trainingProgramId  Int
-  exersiseMachineId  Int
+  exerciseMachineId  Int
 
   trainingProgram    TrainingProgram  @relation(fields: [trainingProgramId], references: [id])
-  exersiseMachine    ExersiseMachine  @relation(fields: [exersiseMachineId], references: [id])
+  exerciseMachine    ExerciseMachine  @relation(fields: [exerciseMachineId], references: [id])
 
-  @@id([trainingProgramId, exersiseMachineId])
+  @@id([trainingProgramId, exerciseMachineId])
 }
 
-model ExersiseMachine {
+model ExerciseMachine {
   id                Int     @id  @default(autoincrement())
   name              String  @unique
   amount            Int
@@ -99,12 +99,12 @@ model ExersiseMachine {
 
 model MachineMuscle {
   muscleGroupId     Int
-  exersiseMachineId  Int
+  exerciseMachineId  Int
 
   muscleGroup       MuscleGroup     @relation(fields: [muscleGroupId], references: [id])
-  exersiseMachine    ExersiseMachine  @relation(fields: [exersiseMachineId], references: [id])
+  exerciseMachine    ExerciseMachine  @relation(fields: [exerciseMachineId], references: [id])
 
-  @@id([muscleGroupId, exersiseMachineId])
+  @@id([muscleGroupId, exerciseMachineId])
 }
 
 model MuscleGroup {
@@ -112,7 +112,7 @@ model MuscleGroup {
   name              String  @unique
 
   trainingPrograms  ProgramMuscle[]
-  exersiseMachines  MachineMuscle[]
+  exerciseMachines  MachineMuscle[]
 }
 
 model ProgramMuscle {

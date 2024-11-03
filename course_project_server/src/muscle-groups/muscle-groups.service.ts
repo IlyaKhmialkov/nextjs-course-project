@@ -1,64 +1,50 @@
 import { Injectable } from '@nestjs/common'
 import { MuscleGroup } from '@prisma/client'
 import { PrismaService } from 'src/prisma.service'
+import { CreateMuscleGroupDto } from './dto/create-muscle-group.dto'
+import { UpdateMuscleGroupDto } from './dto/update-muscle-group.dto'
 
 @Injectable()
 export class MuscleGroupsService {
 	constructor(private prisma: PrismaService) {}
 
-	getAllMuscleGroups(): Promise<MuscleGroup[]> {
+	getAll(): Promise<MuscleGroup[]> {
 		return this.prisma.muscleGroup.findMany()
 	}
-	getMuscleGroup(id: number): Promise<MuscleGroup | null> {
+	get(id: number): Promise<MuscleGroup | null> {
 		return this.prisma.muscleGroup.findUnique({
 			where: { id },
 		})
 	}
-	getMuscleGroupsByName(name: string): Promise<MuscleGroup[]> {
+	getByName(name: string): Promise<MuscleGroup[]> {
 		return this.prisma.muscleGroup.findMany({
 			where: { name: { contains: name, mode: 'insensitive' } },
 		})
 	}
-	getExersiseMachinesIdsByNameOfMuscleGroup(name: string): Promise<MuscleGroup[]> {
+	getExerciseMachinesIdsByNameOfMuscleGroup(name: string): Promise<MuscleGroup[]> {
 		return this.prisma.muscleGroup.findMany({
 			where: { name: { contains: name, mode: 'insensitive' } },
 			include: {
-				exersiseMachines: {
+				exerciseMachines: {
 					select: {
-						exersiseMachineId: true,
+						exerciseMachineId: true,
 					},
 				},
 			},
 		})
 	}
-	createMuscleGroup(name: string): Promise<MuscleGroup> {
-		try {
-			return this.prisma.muscleGroup.create({
-				data: {
-					name,
-				},
-			})
-		} catch (error) {
-			if (error.code === 'P2002') {
-				throw new Error('Duplicate entry. This name is already taken.')
-			}
-			throw error
-		}
+	create(dto: CreateMuscleGroupDto): Promise<MuscleGroup> {
+		return this.prisma.muscleGroup.create({
+			data: dto,
+		})
 	}
-	updateMuscleGroup(id: number, name: string): Promise<MuscleGroup> {
-		try {
-			return this.prisma.muscleGroup.update({
-				where: { id },
-				data: { name },
-			})
-		} catch (error) {
-			if (error.code === 'P2002') {
-				throw new Error('Duplicate entry. This name is already taken.')
-			}
-			throw error
-		}
+	update(id: number, dto: UpdateMuscleGroupDto): Promise<MuscleGroup> {
+		return this.prisma.muscleGroup.update({
+			where: { id },
+			data: dto,
+		})
 	}
-	deleteMuscleGroup(id: number): Promise<MuscleGroup> {
+	delete(id: number): Promise<MuscleGroup> {
 		return this.prisma.muscleGroup.delete({
 			where: { id },
 		})
