@@ -1,3 +1,4 @@
+import ReactQueryProvider from '@/utils/providers/reactQueryProvider'
 import type { Metadata, Viewport } from 'next'
 import localFont from 'next/font/local'
 import './globals.scss'
@@ -33,7 +34,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en'>
-			<body className={`${oswald.variable} ${openSans.variable}`}>{children}</body>
+			<ReactQueryProvider>
+				<body className={`${oswald.variable} ${openSans.variable}`}>{children}</body>
+			</ReactQueryProvider>
 		</html>
 	)
 }

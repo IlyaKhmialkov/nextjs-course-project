@@ -5,12 +5,6 @@
 	justify-content: space-between;
 	position: relative;
 
-	label {
-		position: absolute;
-		height: 100%;
-		width: 30px;
-	}
-
 	.iconDiv {
 		display: flex;
 		justify-content: center;
@@ -22,6 +16,7 @@
 
 		color: $bgPrimary;
 		min-width: 30px;
+		min-height: 30px;
 	}
 
 	input {
@@ -45,5 +40,24 @@
 	}
 	.passwordInput {
 		border-radius: 0;
+	}
+}
+
+.checkboxDiv {
+	margin-left: 10px;
+	label {
+		display: flex;
+		align-items: center;
+		height: 30px;
+		gap: 10px;
+
+		p {
+			text-wrap: nowrap;
+		}
+
+		input {
+			width: 30px;
+			height: 30px;
+		}
 	}
 }

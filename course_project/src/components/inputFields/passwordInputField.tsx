@@ -19,10 +19,11 @@ export function PasswordInputField({ currentRef }: IInputProps) {
 
 	return (
 		<div className={styles.inputDiv}>
-			<label htmlFor='password'></label>
-			<div className={styles.iconDiv}>
-				<BiSolidLock size={20} />
-			</div>
+			<label htmlFor='password'>
+				<div className={styles.iconDiv}>
+					<BiSolidLock size={20} />
+				</div>
+			</label>
 			<input
 				ref={currentRef}
 				type={isPasswordVisible ? 'text' : 'password'}

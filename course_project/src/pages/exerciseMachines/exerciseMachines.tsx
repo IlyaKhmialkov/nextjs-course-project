@@ -1,21 +1,22 @@
+'use client'
+import { CardContainer } from '@/components/cards/cardContainer'
+import { ExerciseMachinesSearch } from '@/components/exerciseMachinesSearch/exerciseMachinesSearch'
 import { Footer } from '@/components/footer/footer'
 import { Header } from '@/components/header/header'
+import { useState } from 'react'
 import styles from './exerciseMachines.module.scss'
 
 export function ExerciseMachines() {
+	const [inputValue, setInputValue] = useState('')
+	const [isChecked, setChecked] = useState(false)
+
 	return (
 		<>
 			<Header />
 			<main className={styles.main}>
-				<h1>List of our exercise machines</h1>
-				<div className={styles.cardContainer}>
-					<div className={styles.card}>
-						<h2>name</h2>
-						<img src='tren.jpg' alt='exercise machine photo' />
-						<p>manufacturer</p>
-						<p>amount: 4</p>
-					</div>
-				</div>
+				<h1>Our exercise machines</h1>
+				<ExerciseMachinesSearch setInputValue={setInputValue} setChecked={setChecked} />
+				<CardContainer input={inputValue} checkbox={isChecked} />
 			</main>
 			<Footer />
 		</>

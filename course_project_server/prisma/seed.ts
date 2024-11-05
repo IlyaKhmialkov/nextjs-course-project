@@ -5,22 +5,43 @@ async function exerciseMachines() {
 	const bench = await prisma.exerciseMachine.upsert({
 		where: { name: 'Treadmill' },
 		update: {},
-		create: { name: 'Treadmill', amount: 2, pictureLink: 'no', description: 'The treadmill is the cardio equipment' },
+		create: {
+			name: 'Treadmill',
+			amount: 2,
+			pictureLink: 'https://txz27ptd.tinifycdn.com/Content/product_images/T101-07.png',
+			description: 'The treadmill is the cardio equipment',
+		},
 	})
 	const dumbbell = await prisma.exerciseMachine.upsert({
 		where: { name: 'dumbbell' },
 		update: {},
-		create: { name: 'dumbbell', amount: 5, pictureLink: 'no', description: 'The dumbbell is not the cardio equipment' },
+		create: {
+			name: 'dumbbell',
+			amount: 5,
+			pictureLink:
+				'https://yorkbarbell.com/wp-content/uploads/2017/01/2111-2116-CastIronAdjustableSpinlockDumbbellSetLB.jpg',
+			description: 'The dumbbell is not the cardio equipment',
+		},
 	})
 	const bike = await prisma.exerciseMachine.upsert({
 		where: { name: 'bike' },
 		update: {},
-		create: { name: 'bike', amount: 1, pictureLink: 'no', description: 'The bike is the cardio equipment' },
+		create: {
+			name: 'bike',
+			amount: 1,
+			pictureLink: 'https://m.media-amazon.com/images/I/71PVBwDOTAL._AC_UF1000,1000_QL80_.jpg',
+			description: 'The bike is the cardio equipment',
+		},
 	})
 	const LegPress = await prisma.exerciseMachine.upsert({
 		where: { name: 'Leg press' },
 		update: {},
-		create: { name: 'Leg press', amount: 1, pictureLink: 'no', description: 'The Leg press is gg' },
+		create: {
+			name: 'Leg press',
+			amount: 1,
+			pictureLink: 'https://www.gymleco.com/wp-content/uploads/2022/05/Gi-243-1-1.jpg',
+			description: 'The Leg press is gg',
+		},
 	})
 }
 async function machineMuscles() {

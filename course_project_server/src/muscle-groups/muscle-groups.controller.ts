@@ -28,8 +28,8 @@ export class MuscleGroupsController {
 	}
 
 	@Get('machines/:name')
-	getExerciseMachinesIdsByNameOfMuscleGroup(@Param('name') name: string) {
-		return this.muscleGroupsService.getExerciseMachinesIdsByNameOfMuscleGroup(name)
+	getExerciseMachinesByNameOfMuscleGroup(@Param('name') name: string) {
+		return this.muscleGroupsService.getExerciseMachinesByNameOfMuscleGroup(name)
 	}
 	@Post('create')
 	create(@Body() dto: CreateMuscleGroupDto) {

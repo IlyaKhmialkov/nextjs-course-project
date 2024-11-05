@@ -13,6 +13,8 @@ async function bootstrap() {
 		})
 	)
 
+	app.enableCors()
+
 	const { httpAdapter } = app.get(HttpAdapterHost)
 	app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter))
 	app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)))

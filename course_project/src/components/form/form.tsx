@@ -1,8 +1,8 @@
 'use client'
 import { useRef } from 'react'
+import { EmailInputField } from '../inputFields/emailInputField'
+import { PasswordInputField } from '../inputFields/passwordInputField'
 import styles from './form.module.scss'
-import { EmailInputField } from './inputFields/emailInputField'
-import { PasswordInputField } from './inputFields/passwordInputField'
 
 interface IFormProps {
 	buttonText: string

@@ -13,10 +13,11 @@ export function EmailInputField({ currentRef }: IInputProps) {
 
 	return (
 		<div className={styles.inputDiv}>
-			<label htmlFor='email'></label>
-			<div className={styles.iconDiv}>
-				<IoMail size={20} />
-			</div>
+			<label htmlFor='email'>
+				<div className={styles.iconDiv}>
+					<IoMail size={20} />
+				</div>
+			</label>
 			<input ref={currentRef} type='text' id='email' placeholder='enter your email' required />
 		</div>
 	)
