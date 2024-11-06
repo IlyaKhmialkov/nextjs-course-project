@@ -3,3 +3,11 @@
 .inputDiv {
 	display: flex;
 }
+
+@media (max-width: 500px) {
+	.inputDiv {
+		flex-direction: column;
+		justify-content: center;
+		gap: 20px;
+	}
+}

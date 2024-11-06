@@ -4,11 +4,43 @@
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	gap: 20px;
-	margin: 10px 0;
+	gap: 30px;
+	margin: 0 0 30px;
 	min-height: calc(100vh - 140px);
+}
+.bgImageDiv {
+	background-image: url('/bgImages/gym.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+
+	width: 100%;
+	height: 45vh;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
 	h1 {
+		color: $bgSecondary;
+		margin-top: 130px;
 		font-size: 44px;
+		text-shadow: -1.5px -1.5px 0 $text, 1.5px -1.5px 0 $text, -1.5px 1.5px 0 $text, 1.5px 1.5px 0 $text;
+	}
+}
+
+@media (max-width: 500px) {
+	.bgImageDiv {
+		width: fit-content;
+		height: fit-content;
+
+		background-image: none;
+
+		h1 {
+			color: $text;
+			margin-top: 0;
+			font-size: 36px;
+			text-shadow: none;
+		}
 	}
 }

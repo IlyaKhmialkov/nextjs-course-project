@@ -25,7 +25,12 @@ export function Navigation() {
 			<ul ref={linkList} className={styles.linksList}>
 				<li>
 					<Link href={'/exerciseMachines'} className={styles.navLink}>
-						exerciseMachines
+						profile
+					</Link>
+				</li>
+				<li>
+					<Link href={'/exerciseMachines'} className={styles.navLink}>
+						exercise machines
 					</Link>
 				</li>
 				<li>

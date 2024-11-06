@@ -14,7 +14,9 @@ export function ExerciseMachines() {
 		<>
 			<Header />
 			<main className={styles.main}>
-				<h1>Our exercise machines</h1>
+				<div className={styles.bgImageDiv}>
+					<h1>Our exercise machines</h1>
+				</div>
 				<ExerciseMachinesSearch setInputValue={setInputValue} setChecked={setChecked} />
 				<CardContainer input={inputValue} checkbox={isChecked} />
 			</main>

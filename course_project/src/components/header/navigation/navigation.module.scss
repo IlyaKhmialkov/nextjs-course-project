@@ -24,7 +24,7 @@
 	display: none;
 }
 
-@media (max-width: 870px) {
+@media (max-width: 950px) {
 	.linksList {
 		flex-direction: column;
 
@@ -32,6 +32,7 @@
 		top: 70px;
 		right: 0;
 		max-height: fit-content;
+		z-index: 1;
 
 		background-color: $bgSecondary;
 		padding: 20px 40px;

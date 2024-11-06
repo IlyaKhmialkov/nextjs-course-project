@@ -5,7 +5,7 @@
 	border: 2px solid $border;
 	border-radius: 20px;
 
-	margin: 20px auto;
+	margin: 0 auto;
 	padding: 10px;
 	max-width: 90vw;
 
@@ -37,7 +37,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		height: 276.8px;
+		max-height: 276.8px;
 
 		img {
 			max-width: 276.8px;
@@ -65,5 +65,23 @@
 
 	h2 {
 		font-size: 32px;
+	}
+}
+
+@media (max-width: 740px) {
+	.cardContainer {
+		width: 345.6px;
+	}
+}
+
+@media (max-width: 385px) {
+	.card {
+		height: 425px;
+		.imgDiv {
+			img {
+				max-width: 221.6px;
+			}
+		}
+		gap: 10px;
 	}
 }
