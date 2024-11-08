@@ -23,7 +23,7 @@ export class ExerciseMachinesController {
 	}
 
 	@Get('name/:name')
-	getExerciseMachinesByName(@Param('name') name: string) {
+	getByName(@Param('name') name: string) {
 		return this.exerciseMachinesService.getByName(name)
 	}
 

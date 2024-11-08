@@ -22,4 +22,5 @@ async function main() {
 
 main().finally(async () => {
 	await prisma.$disconnect()
+	console.log('database successfully reseted')
 })

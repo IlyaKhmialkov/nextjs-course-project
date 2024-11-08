@@ -67,7 +67,7 @@ model Trainer {
 model TrainingProgram {
   id                Int       @id  @default(autoincrement())
   name              String
-  date              DateTime
+  dayOfWeek         Int
   time              DateTime
 
   clientId          Int
