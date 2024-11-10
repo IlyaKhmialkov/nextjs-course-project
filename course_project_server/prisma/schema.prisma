@@ -60,6 +60,7 @@ model Trainer {
   gender        String
   experience    Int
   price         Float
+  isAdmin       Boolean @default(false)
 
   clients       Client[]
 }

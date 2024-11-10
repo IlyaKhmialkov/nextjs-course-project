@@ -1,4 +1,5 @@
 import ReactQueryProvider from '@/utils/providers/reactQueryProvider'
+import setJWTFromCookies from '@/utils/setJWTFromCookies'
 import type { Metadata, Viewport } from 'next'
 import localFont from 'next/font/local'
 import './globals.scss'
@@ -32,6 +33,8 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode
 }>) {
+	setJWTFromCookies()
+
 	return (
 		<html lang='en'>
 			<ReactQueryProvider>

@@ -1,4 +1,7 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put } from '@nestjs/common'
+import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put, UseGuards } from '@nestjs/common'
+import { AdminGuard } from 'src/guard/admin-guard'
+import { AuthGuard } from 'src/guard/auth-guard'
+import { TrainerGuard } from 'src/guard/trainer-guard'
 import { GeneratePasswordHash } from 'src/utils/generatePasswordHash'
 import { CreateTrainerDto } from './dto/create-trainer.dto'
 import { UpdateTrainerDto } from './dto/update-trainer.dto'
@@ -23,12 +26,14 @@ export class TrainersController {
 		}
 	}
 
+	@UseGuards(AuthGuard, AdminGuard)
 	@Post('create')
 	async create(@Body('data') dto: CreateTrainerDto, @Body('password') password: string) {
 		dto.passwordHash = await GeneratePasswordHash(password)
 		return this.trainersService.create(dto)
 	}
 
+	@UseGuards(AuthGuard, TrainerGuard)
 	@Put(':id')
 	async update(@Param('id') id: number, @Body() dto: UpdateTrainerDto, @Body('password') password?: string) {
 		if (password) {
@@ -38,6 +43,7 @@ export class TrainersController {
 		return this.trainersService.update(id, dto)
 	}
 
+	@UseGuards(AuthGuard, TrainerGuard)
 	@Delete(':id')
 	delete(@Param('id') id: number) {
 		return this.trainersService.delete(id)

@@ -1,13 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
+import axios from '../../utils/axiosConfig'
 
 const getExerciseMachinesByMuscleName = async (name: string) => {
-	return await axios.get<IExerciseMachine[]>(`http://localhost:4200/api/muscle-groups/machines/${name}`, {
-		headers: {
-			'Content-Type': 'application/json',
-			'Access-Control-Allow-Origin': '*',
-		},
-	})
+	return await axios.get<IExerciseMachine[]>(`/muscle-groups/machines/${name}`)
 }
 
 export function useExerciseMachinesByMuscleName(name: string) {

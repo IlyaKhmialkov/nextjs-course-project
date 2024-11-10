@@ -13,7 +13,9 @@ async function bootstrap() {
 		})
 	)
 
-	app.enableCors()
+	app.enableCors({
+		origin: ['http://localhost:8080'],
+	})
 
 	const { httpAdapter } = app.get(HttpAdapterHost)
 	app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter))

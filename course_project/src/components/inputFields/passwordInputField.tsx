@@ -29,6 +29,7 @@ export function PasswordInputField({ currentRef }: IInputProps) {
 				type={isPasswordVisible ? 'text' : 'password'}
 				className={styles.passwordInput}
 				id='password'
+				name='password'
 				placeholder='enter your password'
 				required
 			/>

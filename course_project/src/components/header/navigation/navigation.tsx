@@ -24,7 +24,7 @@ export function Navigation() {
 			</button>
 			<ul ref={linkList} className={styles.linksList}>
 				<li>
-					<Link href={'/exerciseMachines'} className={styles.navLink}>
+					<Link href={'/profile'} className={styles.navLink}>
 						profile
 					</Link>
 				</li>
@@ -34,22 +34,22 @@ export function Navigation() {
 					</Link>
 				</li>
 				<li>
-					<Link href={'/exerciseMachines'} className={styles.navLink}>
+					<Link href={'/subscriptions'} className={styles.navLink}>
 						subscriptions
 					</Link>
 				</li>
 				<li>
-					<Link href={'/exerciseMachines'} className={styles.navLink}>
+					<Link href={'/trainers'} className={styles.navLink}>
 						trainers
 					</Link>
 				</li>
 				<li>
-					<Link href={'/exerciseMachines'} className={styles.navLink}>
+					<Link href={'/trainingPrograms'} className={styles.navLink}>
 						training programs
 					</Link>
 				</li>
 				<li>
-					<Link href={'/exerciseMachines'} className={styles.navLink}>
+					<Link href={'/attendance'} className={styles.navLink}>
 						attendance
 					</Link>
 				</li>

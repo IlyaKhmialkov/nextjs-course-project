@@ -1,4 +1,6 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put } from '@nestjs/common'
+import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put, UseGuards } from '@nestjs/common'
+import { AdminGuard } from 'src/guard/admin-guard'
+import { AuthGuard } from 'src/guard/auth-guard'
 import { CreateMuscleGroupDto } from './dto/create-muscle-group.dto'
 import { UpdateMuscleGroupDto } from './dto/update-muscle-group.dto'
 import { MuscleGroupsService } from './muscle-groups.service'
@@ -31,16 +33,19 @@ export class MuscleGroupsController {
 	getExerciseMachinesByNameOfMuscleGroup(@Param('name') name: string) {
 		return this.muscleGroupsService.getExerciseMachinesByNameOfMuscleGroup(name)
 	}
+	@UseGuards(AuthGuard, AdminGuard)
 	@Post('create')
 	create(@Body() dto: CreateMuscleGroupDto) {
 		return this.muscleGroupsService.create(dto)
 	}
 
+	@UseGuards(AuthGuard, AdminGuard)
 	@Put(':id')
 	update(@Param('id') id: number, @Body() dto: UpdateMuscleGroupDto) {
 		return this.muscleGroupsService.update(id, dto)
 	}
 
+	@UseGuards(AuthGuard, AdminGuard)
 	@Delete(':id')
 	delete(@Param('id') id: number) {
 		return this.muscleGroupsService.delete(id)

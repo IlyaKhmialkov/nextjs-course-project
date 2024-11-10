@@ -1,4 +1,6 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put } from '@nestjs/common'
+import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put, UseGuards } from '@nestjs/common'
+import { AdminGuard } from 'src/guard/admin-guard'
+import { AuthGuard } from 'src/guard/auth-guard'
 import { CreateExerciseMachineDto } from './dto/create-exercise-machines.dto'
 import { UpdateExerciseMachineDto } from './dto/update-exercise-machines.dto'
 import { ExerciseMachinesService } from './exercise-machines.service'
@@ -27,16 +29,19 @@ export class ExerciseMachinesController {
 		return this.exerciseMachinesService.getByName(name)
 	}
 
+	@UseGuards(AuthGuard, AdminGuard)
 	@Post('create')
 	create(@Body() dto: CreateExerciseMachineDto) {
 		return this.exerciseMachinesService.create(dto)
 	}
 
+	@UseGuards(AuthGuard, AdminGuard)
 	@Put(':id')
 	update(@Param('id') id: number, @Body() dto: UpdateExerciseMachineDto) {
 		return this.exerciseMachinesService.update(id, dto)
 	}
 
+	@UseGuards(AuthGuard, AdminGuard)
 	@Delete(':id')
 	delete(@Param('id') id: number) {
 		return this.exerciseMachinesService.delete(id)

@@ -1,4 +1,6 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from '@nestjs/common'
+import { AdminGuard } from 'src/guard/admin-guard'
+import { AuthGuard } from 'src/guard/auth-guard'
 import { CreateMachineMuscleDto } from './dto/create-machine-muscle.dto'
 import { MachineMusclesService } from './machine-muscles.service'
 
@@ -21,11 +23,13 @@ export class MachineMusclesController {
 		return this.machineMusclesService.getAllMuscleGroups(id)
 	}
 
+	@UseGuards(AuthGuard, AdminGuard)
 	@Post('create')
 	create(@Body() dto: CreateMachineMuscleDto) {
 		return this.machineMusclesService.create(dto)
 	}
 
+	@UseGuards(AuthGuard, AdminGuard)
 	@Delete()
 	delete(@Body() dto: CreateMachineMuscleDto) {
 		return this.machineMusclesService.delete(dto)

@@ -18,7 +18,7 @@ export function EmailInputField({ currentRef }: IInputProps) {
 					<IoMail size={20} />
 				</div>
 			</label>
-			<input ref={currentRef} type='text' id='email' placeholder='enter your email' required />
+			<input ref={currentRef} type='text' id='email' name='email' placeholder='enter your email' required />
 		</div>
 	)
 }

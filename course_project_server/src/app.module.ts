@@ -1,5 +1,8 @@
-import { Module } from '@nestjs/common'
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
+import { JWTMiddleware } from './middleware/jwt-middleware'
 import { AttendancesModule } from './modules/attendances/attendances.module'
+import { AuthModule } from './modules/auth/auth.module'
 import { ClientsModule } from './modules/clients/clients.module'
 import { ExerciseMachinesModule } from './modules/exercise-machines/exercise-machines.module'
 import { MachineMusclesModule } from './modules/machine-muscles/machine-muscles.module'
@@ -24,6 +27,12 @@ import { TrainingProgramsModule } from './modules/training-programs/training-pro
 		TrainingProgramsModule,
 		ProgramMachinesModule,
 		ProgramMusclesModule,
+		AuthModule,
+		ConfigModule.forRoot({ isGlobal: true, ignoreEnvFile: true }),
 	],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+	configure(consumer: MiddlewareConsumer) {
+		consumer.apply(JWTMiddleware).forRoutes('*')
+	}
+}

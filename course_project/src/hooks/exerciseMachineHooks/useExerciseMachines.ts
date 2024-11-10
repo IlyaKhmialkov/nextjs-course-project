@@ -1,13 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
+import axios from '../../utils/axiosConfig'
 
 const getExerciseMachines = async () => {
-	return await axios.get<IExerciseMachine[]>('http://localhost:4200/api/exercise-machines', {
-		headers: {
-			'Content-Type': 'application/json',
-			'Access-Control-Allow-Origin': '*',
-		},
-	})
+	return await axios.get<IExerciseMachine[]>('/exercise-machines')
 }
 
 export function useExerciseMachines() {
