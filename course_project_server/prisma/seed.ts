@@ -292,13 +292,14 @@ async function Attendance() {
 }
 const TrainerData = [
 	{
-		email: 'amy.roberts@example.com',
+		email: 'ilya@gmail.com',
 		passwordHash: '$2b$10$WU1EklgKJWOzm3iCU90FRelll3sqxnn6rUsiPObNbU90mXKaJSWce',
-		name: 'Amy Roberts',
-		age: 27,
-		gender: 'Female',
-		experience: 10,
-		price: 15.5,
+		name: 'Ilya Kh',
+		age: 19,
+		gender: 'Male',
+		experience: 2,
+		price: 64,
+		isAdmin: true,
 	},
 	{
 		email: 'david.green@example.com',
@@ -351,6 +352,7 @@ async function Trainer() {
 				gender: data.gender,
 				experience: data.experience,
 				price: data.price,
+				isAdmin: data.isAdmin,
 			},
 		})
 	}

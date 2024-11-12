@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { PrismaService } from 'src/prisma.service'
 
 interface IUserAuthData {
+	id: number
 	email: string
 	passwordHash: string
 	role: string
@@ -16,7 +17,7 @@ export class AuthService {
 			where: { email: email },
 		})
 		if (client) {
-			return { email: client.email, passwordHash: client.passwordHash, role: 'client' }
+			return { id: client.id, email: client.email, passwordHash: client.passwordHash, role: 'client' }
 		}
 
 		const trainer = await this.prisma.trainer.findUnique({
@@ -24,9 +25,9 @@ export class AuthService {
 		})
 		if (trainer) {
 			if (trainer.isAdmin) {
-				return { email: trainer.email, passwordHash: trainer.passwordHash, role: 'admin' }
+				return { id: trainer.id, email: trainer.email, passwordHash: trainer.passwordHash, role: 'admin' }
 			}
-			return { email: trainer.email, passwordHash: trainer.passwordHash, role: 'trainer' }
+			return { id: trainer.id, email: trainer.email, passwordHash: trainer.passwordHash, role: 'trainer' }
 		}
 
 		return null

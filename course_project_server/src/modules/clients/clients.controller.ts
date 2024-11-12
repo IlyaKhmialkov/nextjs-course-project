@@ -33,7 +33,6 @@ export class ClientsController {
 		return this.clientsService.create(dto)
 	}
 
-	@UseGuards(AuthGuard)
 	@Put(':id')
 	async update(@Param('id') id: number, @Body('data') dto: UpdateClientDto, @Body('password') password?: string) {
 		if (password) {

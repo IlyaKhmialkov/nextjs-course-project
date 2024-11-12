@@ -6,5 +6,6 @@ import { TrainersService } from './trainers.service'
 @Module({
 	controllers: [TrainersController],
 	providers: [TrainersService, PrismaService],
+	exports: [TrainersService],
 })
 export class TrainersModule {}

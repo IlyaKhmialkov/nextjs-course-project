@@ -5,6 +5,6 @@ import { Observable } from 'rxjs'
 export class TrainerGuard implements CanActivate {
 	canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
 		const request = context.switchToHttp().getRequest()
-		return request['user'].role === 'trainer'
+		return request['user'].role === 'trainer' || request['user'].role === 'admin'
 	}
 }
