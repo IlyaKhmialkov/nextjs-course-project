@@ -20,9 +20,8 @@ export class AuthController {
 	@Post('login')
 	async login(@Body() data: { email: string; password: string }) {
 		const userData = await this.authService.checkEmail(data.email)
-		const isPasswordCorrect = await CheckPassword(data.password, userData.passwordHash)
 
-		if (userData && isPasswordCorrect) {
+		if (userData && (await CheckPassword(data.password, userData.passwordHash))) {
 			const role = userData.role
 			const user = { email: data.email, role: role }
 			const token = sign(user, process.env.JWT_SECRET_KEY, { expiresIn: '30d' })

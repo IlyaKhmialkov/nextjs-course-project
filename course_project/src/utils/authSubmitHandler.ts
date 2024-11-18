@@ -1,10 +1,15 @@
 import { FormEvent } from 'react'
 import axios from './axiosConfig'
 
-export async function authSubmitHandler(e: FormEvent<HTMLFormElement>) {
-	e.preventDefault()
+interface IAuthSubmitHandlerProps {
+	e: FormEvent<HTMLFormElement>
+	currentTarget?: EventTarget & HTMLFormElement
+}
 
-	const formData = new FormData(e.currentTarget)
+export async function authSubmitHandler({ e, currentTarget }: IAuthSubmitHandlerProps) {
+	currentTarget ? '' : e.preventDefault()
+
+	const formData = currentTarget ? new FormData(currentTarget) : new FormData(e.currentTarget)
 	const email = formData.get('email')
 	const password = formData.get('password')
 
