@@ -1,4 +1,4 @@
-import axios from './axiosConfig'
+import axios from '../axiosConfig'
 
 export async function ChangePasswordHandler(email: string, newPassword: string) {
 	const response = await axios.post<string | null>('/auth/change-password', {

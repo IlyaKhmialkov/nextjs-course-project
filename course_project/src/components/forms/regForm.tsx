@@ -1,6 +1,6 @@
 'use client'
 import { setAuthHeader } from '@/utils/axiosConfig'
-import { regSubmitHandler } from '@/utils/regSubmitHandler'
+import { regSubmitHandler } from '@/utils/queries/regSubmitHandler'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { FormEvent } from 'react'
@@ -53,8 +53,3 @@ export function Form() {
 		</form>
 	)
 }
-// "email": "mike.wilson@example.com",
-// "passwordHash": "$2b$10$d/7qKafOPoZBSc/S8MCMzea6Lhkg5r8X5Aq/XeqqgmGyhBVX4L9d6",
-// "name": "Mike Wilson",
-// "age": 32,
-// "gender": "Male",

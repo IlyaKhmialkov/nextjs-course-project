@@ -1,6 +1,6 @@
 import { FormEvent } from 'react'
-import { authSubmitHandler } from './authSubmitHandler'
-import axios from './axiosConfig'
+import axios from './../axiosConfig'
+import { authSubmitHandler } from './../queries/authSubmitHandler'
 
 export async function regSubmitHandler(e: FormEvent<HTMLFormElement>) {
 	e.preventDefault()

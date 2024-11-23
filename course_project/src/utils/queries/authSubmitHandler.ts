@@ -1,5 +1,5 @@
 import { FormEvent } from 'react'
-import axios from './axiosConfig'
+import axios from '../axiosConfig'
 
 interface IAuthSubmitHandlerProps {
 	e: FormEvent<HTMLFormElement>

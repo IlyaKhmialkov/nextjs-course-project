@@ -1,6 +1,6 @@
 import { Dispatch, KeyboardEvent, SetStateAction, useRef } from 'react'
-import { CheckBox } from '../inputFields/checkBox'
-import { InputField } from '../inputFields/inputField'
+import { CheckBox } from '../../inputFields/checkBox'
+import { InputField } from '../../inputFields/inputField'
 import styles from './exerciseMachinesSearch.module.scss'
 
 interface IExerciseMachinesSearchProps {

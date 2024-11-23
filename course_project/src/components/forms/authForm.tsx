@@ -1,6 +1,6 @@
 'use client'
-import { authSubmitHandler } from '@/utils/authSubmitHandler'
 import { setAuthHeader } from '@/utils/axiosConfig'
+import { authSubmitHandler } from '@/utils/queries/authSubmitHandler'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { FormEvent } from 'react'

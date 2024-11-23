@@ -1,10 +1,10 @@
-import { Dispatch, ReactElement, SetStateAction } from 'react'
+import { Dispatch, ReactNode, SetStateAction } from 'react'
 import { IoClose } from 'react-icons/io5'
 import styles from './modal.module.scss'
 
 interface IModalProps {
 	onClose: Dispatch<SetStateAction<boolean>>
-	children: ReactElement[]
+	children?: ReactNode
 }
 
 export function Modal({ onClose, children }: IModalProps) {

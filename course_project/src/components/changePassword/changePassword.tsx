@@ -1,4 +1,4 @@
-import { ChangePasswordHandler } from '@/utils/changePasswordHandler'
+import { ChangePasswordHandler } from '@/utils/queries/changePasswordHandler'
 import { Dispatch, FormEvent, SetStateAction } from 'react'
 import { EmailInputField } from '../inputFields/emailInputField'
 import { PasswordInputField } from '../inputFields/passwordInputField'

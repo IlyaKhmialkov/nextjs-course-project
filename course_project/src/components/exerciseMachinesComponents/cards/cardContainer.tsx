@@ -1,15 +1,16 @@
-import { useExerciseMachines } from '@/hooks/exerciseMachineHooks/useExerciseMachines'
-import { useExerciseMachinesByMuscleName } from '@/hooks/exerciseMachineHooks/useExerciseMachinesByMuscleName'
-import { useExerciseMachinesByName } from '@/hooks/exerciseMachineHooks/useExerciseMachinesByName'
+import { useExerciseMachinesByMuscleName } from '@/hooks/exerciseMachines/useExerciseMachinesByMuscleName'
+import { useExerciseMachinesByName } from '@/hooks/exerciseMachines/useExerciseMachinesByName'
 import { Card } from './card'
 import styles from './card.module.scss'
 
 interface ICardContainerProps {
 	input: string
 	checkbox: boolean
+	exerciseMachines: IExerciseMachine[] | undefined
+	isDataLoading: boolean
 }
 
-export function CardContainer({ input, checkbox }: ICardContainerProps) {
+export function CardContainer({ input, checkbox, exerciseMachines, isDataLoading }: ICardContainerProps) {
 	//  if (input === '') {
 	//    { data, isLoading } = useExerciseMachines()  }
 	//  if (input === '' && checkbox) {
@@ -19,7 +20,7 @@ export function CardContainer({ input, checkbox }: ICardContainerProps) {
 
 	const { data, isLoading } =
 		input === ''
-			? useExerciseMachines()
+			? { data: exerciseMachines, isLoading: isDataLoading }
 			: checkbox
 			? useExerciseMachinesByMuscleName(input)
 			: useExerciseMachinesByName(input)
@@ -34,10 +35,7 @@ export function CardContainer({ input, checkbox }: ICardContainerProps) {
 		<div className={styles.cardContainer}>
 			{isLoading ? (
 				<>
-					<Card />
-					<Card />
-					<Card />
-					<Card />
+					<h2>Loading...</h2>
 				</>
 			) : data?.length ? (
 				data.map((exerciseMachine: IExerciseMachine) => (

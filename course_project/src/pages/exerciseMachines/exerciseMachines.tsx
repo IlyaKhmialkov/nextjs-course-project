@@ -1,26 +1,15 @@
-'use client'
-import { CardContainer } from '@/components/cards/cardContainer'
-import { ExerciseMachinesSearch } from '@/components/exerciseMachinesSearch/exerciseMachinesSearch'
-import { Footer } from '@/components/footer/footer'
-import { Header } from '@/components/header/header'
-import { useState } from 'react'
+import { ExerciseMachines } from '@/components/exerciseMachinesComponents/exerciseMachines/exerciseMachines'
 import styles from './exerciseMachines.module.scss'
 
-export function ExerciseMachines() {
-	const [inputValue, setInputValue] = useState('')
-	const [isChecked, setChecked] = useState(false)
-
+export function ExerciseMachinesPage() {
 	return (
 		<>
-			<Header />
 			<main className={styles.main}>
 				<div className={styles.bgImageDiv}>
 					<h1>Our exercise machines</h1>
 				</div>
-				<ExerciseMachinesSearch setInputValue={setInputValue} setChecked={setChecked} />
-				<CardContainer input={inputValue} checkbox={isChecked} />
+				<ExerciseMachines />
 			</main>
-			<Footer />
 		</>
 	)
 }

@@ -1,5 +1,5 @@
-import { ExerciseMachines } from '@/pages/exerciseMachines/exerciseMachines'
+import { ExerciseMachinesPage } from '@/pages/exerciseMachines/exerciseMachines'
 
 export default function page() {
-	return <ExerciseMachines />
+	return <ExerciseMachinesPage />
 }

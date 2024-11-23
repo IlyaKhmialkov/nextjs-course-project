@@ -29,6 +29,14 @@ a {
 
 button {
 	cursor: pointer;
+
+	border: 2px solid $border;
+	border-radius: 7.5px;
+
+	background-color: $button;
+
+	font: inherit;
+	color: $text;
 }
 
 .oswald {
