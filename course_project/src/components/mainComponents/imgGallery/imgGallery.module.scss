@@ -1,0 +1,68 @@
+@use '@colors' as *;
+
+.gymPictures {
+	max-width: 1300px;
+	width: calc(100% - 80px);
+	margin: 0 auto;
+	border: 2px solid $border;
+	border-radius: 15px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: $bgSecondary;
+
+	h2 {
+		margin-top: 20px;
+		font-size: 30px;
+	}
+
+	div {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+
+		img {
+			height: 300px;
+			width: auto;
+			padding: 20px;
+		}
+	}
+}
+.bigImg {
+	margin: 0 auto;
+	height: calc(80vh - 60px);
+	width: auto;
+}
+.link {
+	font-size: 20px;
+	text-decoration: underline;
+	margin-bottom: 20px;
+}
+@media (max-width: 580px) {
+	.gymPictures {
+		width: calc(100% - 60px);
+		div img {
+			max-width: 400px;
+			height: auto;
+		}
+	}
+}
+@media (max-width: 500px) {
+	.gymPictures {
+		width: calc(100% - 40px);
+		div img {
+			max-width: 360px;
+		}
+	}
+}
+@media (max-width: 440px) {
+	.gymPictures div img {
+		max-width: 300px;
+	}
+}
+@media (max-width: 360px) {
+	.gymPictures div img {
+		max-width: 280px;
+	}
+}

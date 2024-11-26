@@ -1,0 +1,19 @@
+@use '@colors' as *;
+
+.about {
+	max-width: 1300px;
+	width: calc(100% - 80px);
+	margin: 0 auto;
+	border: 2px solid $border;
+	border-radius: 15px;
+	padding: 20px 30px;
+
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	background-color: $bgSecondary;
+
+	ul {
+		margin-left: 20px;
+	}
+}
