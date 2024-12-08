@@ -13,10 +13,6 @@ export class CreateExerciseMachineDto {
 
 	@IsString()
 	@IsNotEmpty()
-	pictureLink: string
-
-	@IsString()
-	@IsNotEmpty()
 	@MinLength(10)
 	description: string
 }

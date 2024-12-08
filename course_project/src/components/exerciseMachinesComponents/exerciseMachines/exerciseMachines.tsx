@@ -22,11 +22,12 @@ export function ExerciseMachines() {
 	return (
 		<>
 			<ExerciseMachinesSearch setInputValue={setInputValue} setChecked={setChecked} />
-			{isLoading ? (
-				<CardContainer input={inputValue} checkbox={isChecked} exerciseMachines={data} isDataLoading={isLoading} />
-			) : (
-				<CardContainer input={inputValue} checkbox={isChecked} exerciseMachines={data} isDataLoading={isLoading} />
-			)}
+			<CardContainer
+				input={inputValue}
+				checkbox={isChecked}
+				exerciseMachines={exerciseMachines}
+				isDataLoading={isLoading}
+			/>
 			{!isLoading && Cookies.get('role') === 'admin' && (
 				<ExerciseMachinesEdit exerciseMachines={exerciseMachines} setExerciseMachines={setExerciseMachines} />
 			)}

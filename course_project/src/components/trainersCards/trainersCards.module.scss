@@ -1,0 +1,106 @@
+@use '@colors' as *;
+
+.trainersCards {
+	width: calc(100% - 200px);
+	padding: 20px;
+	margin: 0 auto;
+	user-select: none;
+}
+
+.embla {
+	overflow: hidden;
+	width: 100%;
+}
+
+.emblaContainer {
+	display: flex;
+	gap: 20px;
+}
+
+.emblaSlide {
+	flex: 0 0 calc(50% - 10px);
+	position: relative;
+}
+
+.slideContent {
+	background: $bgSecondary;
+	padding: 20px;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.trainerImage {
+	max-width: 300px;
+	height: auto;
+	border-radius: 999px;
+	margin: 10px 0;
+}
+
+.errorDiv {
+	text-align: center;
+	color: red;
+}
+.trainerData {
+	text-align: start;
+}
+.emblaButtons {
+	width: 100%;
+	margin-top: 20px;
+
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+
+	button {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		background-color: $bgPrimary;
+		border-radius: 20px;
+	}
+	button:first-of-type {
+		padding-right: 2px;
+	}
+	button:last-of-type {
+		padding-left: 2px;
+	}
+}
+@media (min-width: 1300px) {
+	.emblaSlide {
+		flex: 0 0 calc(33% - 10px);
+	}
+}
+@media (max-width: 950px) {
+	.emblaSlide {
+		flex: 0 0 100%;
+	}
+}
+@media (max-width: 768px) {
+	.trainersCards {
+		width: calc(100% - 100px);
+	}
+}
+@media (max-width: 490px) {
+	.trainersCards {
+		width: calc(100% - 50px);
+	}
+	.slideContent {
+		padding: 20px 15px;
+	}
+	.trainerImage {
+		max-width: 280px;
+	}
+}
+@media (max-width: 400px) {
+	.trainersCards {
+		width: 100%;
+	}
+	.slideContent {
+		padding: 20px 10px;
+		height: 456px;
+	}
+	.trainerImage {
+		max-width: 260px;
+	}
+}

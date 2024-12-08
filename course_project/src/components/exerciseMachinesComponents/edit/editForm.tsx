@@ -18,7 +18,6 @@ export function EditForm({ setModalVisible, id, exerciseMachines, setExerciseMac
 		const data = {
 			name: formData.get('simple-name'),
 			amount: parseInt(formData.get('simple-amount') as string, 10),
-			pictureLink: formData.get('simple-link'),
 			description: formData.get('simple-description'),
 		}
 		const response = await axios.put<IExerciseMachine>(`/exercise-machines/${id}`, data)
@@ -29,7 +28,6 @@ export function EditForm({ setModalVisible, id, exerciseMachines, setExerciseMac
 						...machine,
 						name: data.name as string,
 						amount: data.amount,
-						pictureLink: data.pictureLink as string,
 						description: data.description as string,
 					}
 				} else {
@@ -54,10 +52,6 @@ export function EditForm({ setModalVisible, id, exerciseMachines, setExerciseMac
 				<div>
 					<p>new exercise machine new amount</p>
 					<SimpleInputField id='amount' />
-				</div>
-				<div>
-					<p>exercise machine new picture link</p>
-					<SimpleInputField id='link' />
 				</div>
 				<div>
 					<p>exercise machine new description</p>

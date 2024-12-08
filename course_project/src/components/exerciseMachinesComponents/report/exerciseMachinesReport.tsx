@@ -16,8 +16,7 @@ export function ExerciseMachinesReport({ exerciseMachines }: IExerciseMachinesRe
 			{ header: 'id', key: 'id', width: 4 },
 			{ header: 'name', key: 'name', width: 20 },
 			{ header: 'amount', key: 'amount', width: 8 },
-			{ header: 'description', key: 'description', width: 80 },
-			{ header: 'picture_link', key: 'picture_link', width: 70 },
+			{ header: 'description', key: 'description', width: 150 },
 		]
 
 		exerciseMachines.forEach(machine => {
@@ -26,7 +25,6 @@ export function ExerciseMachinesReport({ exerciseMachines }: IExerciseMachinesRe
 				name: machine.name,
 				amount: machine.amount,
 				description: machine.description,
-				picture_link: machine.pictureLink,
 			})
 		})
 
@@ -36,25 +34,52 @@ export function ExerciseMachinesReport({ exerciseMachines }: IExerciseMachinesRe
 
 	function pdfDownloadHandler() {
 		const doc = new jsPDF()
+		const pageWidth = doc.internal.pageSize.getWidth()
+		const margin = 20
+
+		const drawHeader = (doc: jsPDF, page: any) => {
+			doc.setFontSize(18)
+			doc.setTextColor(40, 40, 40)
+			doc.text('Exercise Machines Report', pageWidth / 2, 15, { align: 'center' })
+			doc.setFontSize(12)
+			doc.setTextColor(100)
+			doc.text(`Page ${page}`, pageWidth - margin, 15, { align: 'right' })
+			doc.setDrawColor(200)
+			doc.line(margin, 20, pageWidth - margin, 20)
+		}
+		const drawFooter = (doc: jsPDF) => {
+			const currentDate = new Date().toLocaleDateString()
+			doc.setFontSize(10)
+			doc.setTextColor(150)
+			doc.text(`Generated on: ${currentDate}`, margin, doc.internal.pageSize.getHeight() - 10)
+		}
 
 		const firstId = exerciseMachines[0].id
-		exerciseMachines.forEach(machine => {
+
+		exerciseMachines.forEach((machine, index) => {
 			if (machine.id !== firstId) {
 				doc.addPage()
 			}
-			doc.text('id: ' + machine.id, 20, 20)
-			doc.text('name: ' + machine.name, 20, 30)
-			doc.text('amount: ' + machine.amount, 20, 40)
-			doc.text('picture link: ', 20, 50)
-			doc.setFontSize(14)
-			doc.text(machine.pictureLink, 20, 60)
 
-			doc.setFontSize(16)
-			doc.text('description: ', 20, 70)
+			drawHeader(doc, index + 1)
+			doc.setTextColor(30, 30, 30)
+
+			doc.setFontSize(20)
+			doc.text(`${machine.name}`, pageWidth / 2, 32, { align: 'center' })
+
 			doc.setFontSize(14)
-			const splitDescription = doc.splitTextToSize(machine.description, 180)
-			doc.text(splitDescription, 20, 80)
-			doc.setFontSize(16)
+			doc.text(`ID: ${machine.id}`, margin, 44)
+			doc.text(`Amount: ${machine.amount}`, margin, 54)
+
+			const splitDescription = doc.splitTextToSize(machine.description, pageWidth - 2 * margin)
+			doc.text(splitDescription, margin, 64)
+
+			if (machine.picture) {
+				const img = new Image()
+				img.src = `http://localhost:4200/${machine.picture}`
+				doc.addImage(img, 'PNG', margin, 100, pageWidth - 2 * margin, pageWidth - 2 * margin)
+			}
+			drawFooter(doc)
 		})
 
 		doc.save('exercise_machines.pdf')

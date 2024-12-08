@@ -18,7 +18,6 @@ export function AddForm({ setModalVisible, exerciseMachines, setExerciseMachines
 		const data = {
 			name: formData.get('simple-name'),
 			amount: parseInt(formData.get('simple-amount') as string, 10),
-			pictureLink: formData.get('simple-link'),
 			description: formData.get('simple-description'),
 		}
 		const response = await axios.post<IExerciseMachine>(`/exercise-machines/create`, data)
@@ -41,10 +40,6 @@ export function AddForm({ setModalVisible, exerciseMachines, setExerciseMachines
 				<div>
 					<p>new exercise machine amount</p>
 					<SimpleInputField id='amount' />
-				</div>
-				<div>
-					<p>new exercise machine picture link</p>
-					<SimpleInputField id='link' />
 				</div>
 				<div>
 					<p>new exercise machine description</p>

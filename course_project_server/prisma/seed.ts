@@ -318,7 +318,7 @@ const TrainerData = [
 		gender: 'Female',
 		experience: 11,
 		price: 16,
-		picture: 'trainers/2.webp',
+		picture: 'trainers/2.png',
 	},
 	{
 		email: 'kevin.jones@example.com',
