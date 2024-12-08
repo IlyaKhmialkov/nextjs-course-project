@@ -23,7 +23,7 @@ export class ExerciseMachinesService {
 	}
 	create(dto: CreateExerciseMachineDto): Promise<ExerciseMachine> {
 		return this.prisma.exerciseMachine.create({
-			data: dto,
+			data: { ...dto, picture: 'trainers/mypfp.jpg' }, // CHANGE LINK
 		})
 	}
 	update(id: number, dto: UpdateExerciseMachineDto): Promise<ExerciseMachine> {

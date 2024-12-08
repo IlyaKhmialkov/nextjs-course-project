@@ -5,97 +5,95 @@ const exerciseMachinesData = [
 	{
 		name: 'Treadmill',
 		amount: 2,
-		pictureLink: 'https://txz27ptd.tinifycdn.com/Content/product_images/T101-07.png',
+		picture: 'machines/1.png',
 		description: 'A machine that can be used for walking, jogging, running, or sprinting.',
 	},
 	{
 		name: 'Dumbbells',
 		amount: 20,
-		pictureLink: 'https://m.media-amazon.com/images/I/71bxRATPpIL.jpg',
+		picture: 'machines/2.jpg',
 		description: 'Dumbbells provide a comprehensive workout targeting multiple muscle groups.',
 	},
 	{
 		name: 'Stationary bike',
 		amount: 1,
-		pictureLink: 'https://www.jbsports.com.ph/__resources/webdata/images/products/259.jpg',
+		picture: 'machines/3.jpg',
 		description: 'A stationary bike is an exercise machine that simulates the physical exertions of riding a bicycle.',
 	},
 	{
 		name: 'Leg press',
 		amount: 1,
-		pictureLink: 'https://www.gymleco.com/wp-content/uploads/2022/05/Gi-243-1-1.jpg',
+		picture: 'machines/4.jpg',
 		description:
 			'A gym machine that allows the user to train the lower body. Also you can easily die on this exercise machine',
 	},
 	{
 		name: 'Bench press',
 		amount: 10,
-		pictureLink: 'https://m.media-amazon.com/images/I/61w5b6zioKL.jpg',
+		picture: 'machines/5.jpg',
 		description: 'Bench Press is used to perform a bench press.',
 	},
 	{
 		name: 'Leg extension',
 		amount: 1,
-		pictureLink: 'https://www.panattasport.com/wp-content/uploads/2023/03/1fw181-jpg-webp.webp',
+		picture: 'machines/6.png',
 		description: 'A leg extension machine is a popular piece of gym equipment for isolated quadriceps training.',
 	},
 	{
 		name: 'Lat pulldown',
 		amount: 2,
-		pictureLink: 'https://dynamofitness.com.au/cdn/shop/files/IMPC-Lat-Pulldown--Main_1.jpg?v=1683250958&width=1024',
+		picture: 'machines/7.png',
 		description: 'The lat pulldown is an upper-body exercise that focuses on the muscles of your back.',
 	},
 	{
 		name: 'Smith machine',
 		amount: 1,
-		pictureLink: 'https://www.panattasport.com/wp-content/uploads/2023/03/1fw520-1-jpg-webp.webp',
+		picture: 'machines/8.png',
 		description: 'The Smith Machine is a rack where the rod movement is strictly vertical since it is fixed.',
 	},
 	{
 		name: 'Cable Machine',
 		amount: 2,
-		pictureLink: 'https://yorkbarbell.com/wp-content/uploads/2017/02/55017_Cable_Cross.jpg',
+		picture: 'machines/9.jpg',
 		description: 'This is a machine that allows you to do compound exercises.',
 	},
 	{
 		name: 'Pullup bar',
 		amount: 2,
-		pictureLink: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuZFe5CdMSig6tkRJlSCIkc_7k8-T8DzH2oA&s',
+		picture: 'machines/10.jpg',
 		description: 'A bar that can be mounted to a wall or doorway to perform pull-ups.',
 	},
 	{
 		name: 'Kettlebells',
 		amount: 10,
-		pictureLink: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtiYm11TRwUPiZo5lhEtiJq_EFQ0R6CkIp3g&s',
+		picture: 'machines/11.jpg',
 		description:
 			'These are round weights with a handle on top. They can be used for various exercises, such as swings, snatches, cleans, and Turkish get-ups.',
 	},
 	{
 		name: 'Squat rack',
 		amount: 1,
-		pictureLink:
-			'https://www.fringesport.com/cdn/shop/files/Garage-Series-Squat-Rack-Pull-Up-Bar-Fringe-Sport-106908938.jpg?v=1718672035&width=1080',
+		picture: 'machines/12.png',
 		description:
 			'Squat Rack makes training with a rod more convenient and safe. This is especially true for squats with more weight.',
 	},
 	{
 		name: 'Barbells',
 		amount: 2,
-		pictureLink: 'https://www.gymleco.com/wp-content/uploads/2022/05/825.jpg',
+		picture: 'machines/13.jpg',
 		description: 'Barbells are versatile equipment with which you can perform a workout for the whole body.',
 	},
 	{
 		name: 'Battle ropes',
 		amount: 1,
-		pictureLink: 'https://m.media-amazon.com/images/I/81YvlQ+zJDL.jpg',
+		picture: 'machines/14.jpg',
 		description:
 			'Battle ropes are a versatile and effective tool for enhancing cardiovascular fitness and muscle endurance.',
 	},
 	{
 		name: 'Hammer strength',
 		amount: 1,
-		pictureLink:
-			'https://www.lifefitness.com.au/wp-content/uploads/2015/02/IL-CB-MIDBLK-Iso-Lateral-Chest-Back-720x720.jpg.webp',
+		picture: 'machines/15.png',
 		description:
 			'The Hammer Strength Machine uses free weight and levers to create resistance. For many athletes, this equipment is ideal for deep study of the chest muscles.',
 	},
@@ -106,7 +104,7 @@ async function exerciseMachines() {
 		await prisma.exerciseMachine.upsert({
 			where: { id: i + 1, name: data.name },
 			update: {},
-			create: { name: data.name, amount: data.amount, pictureLink: data.pictureLink, description: data.description },
+			create: { name: data.name, amount: data.amount, picture: data.picture, description: data.description },
 		})
 	}
 }
@@ -300,6 +298,7 @@ const TrainerData = [
 		experience: 2,
 		price: 64,
 		isAdmin: true,
+		picture: 'trainers/mypfp.jpg',
 	},
 	{
 		email: 'david.green@example.com',
@@ -309,6 +308,7 @@ const TrainerData = [
 		gender: 'Male',
 		experience: 5,
 		price: 14.5,
+		picture: 'trainers/1.webp',
 	},
 	{
 		email: 'lisa.anderson@example.com',
@@ -318,6 +318,7 @@ const TrainerData = [
 		gender: 'Female',
 		experience: 11,
 		price: 16,
+		picture: 'trainers/2.webp',
 	},
 	{
 		email: 'kevin.jones@example.com',
@@ -327,6 +328,7 @@ const TrainerData = [
 		gender: 'Male',
 		experience: 7,
 		price: 18,
+		picture: 'trainers/3.webp',
 	},
 	{
 		email: 'emily.baker@example.com',
@@ -336,6 +338,7 @@ const TrainerData = [
 		gender: 'Female',
 		experience: 2,
 		price: 10,
+		picture: 'trainers/4.webp',
 	},
 ]
 async function Trainer() {
@@ -353,6 +356,7 @@ async function Trainer() {
 				experience: data.experience,
 				price: data.price,
 				isAdmin: data.isAdmin,
+				picture: data.picture,
 			},
 		})
 	}

@@ -18,7 +18,7 @@ export class TrainersService {
 	}
 	create(dto: CreateTrainerDto): Promise<Trainer> {
 		return this.prisma.trainer.create({
-			data: dto,
+			data: { ...dto, picture: 'trainers/mypfp.jpg' }, // CHANGE LINK
 		})
 	}
 	update(id: number, dto: UpdateTrainerDto, passwordHash?: string): Promise<Trainer> {

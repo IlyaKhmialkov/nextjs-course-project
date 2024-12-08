@@ -9,119 +9,110 @@ datasource db {
 }
 
 model Subscription {
-  id        Int     @id      @default(autoincrement())
-  name      String  @unique
-  duration  Int
-  price     Float
-
-  clients   SubscriptionClient[]
+  id       Int                  @id @default(autoincrement())
+  name     String               @unique
+  duration Int
+  price    Float
+  clients  SubscriptionClient[]
 }
 
 model SubscriptionClient {
-  clientId        Int 
-  subscriptionId  Int
-  daysLeft        Int
-
-  client          Client        @relation(fields: [clientId], references: [id])
-  subscription    Subscription  @relation(fields: [subscriptionId], references: [id])
+  clientId       Int
+  subscriptionId Int
+  daysLeft       Int
+  client         Client       @relation(fields: [clientId], references: [id])
+  subscription   Subscription @relation(fields: [subscriptionId], references: [id])
 
   @@id([subscriptionId, clientId])
 }
 
 model Client {
-  id             Int       @id @default(autoincrement())
-  email          String    @unique
-  passwordHash   String
-  name           String
-  age            Int
-  gender         String
-
-  trainerId      Int?
-  trainer        Trainer?  @relation(fields: [trainerId], references: [id])
-  attendance     Attendance[]
+  id               Int                  @id @default(autoincrement())
+  email            String               @unique
+  passwordHash     String
+  name             String
+  age              Int
+  gender           String
+  trainerId        Int?
+  attendance       Attendance[]
+  trainer          Trainer?             @relation(fields: [trainerId], references: [id])
+  subscriptions    SubscriptionClient[]
   trainingPrograms TrainingProgram[]
-  subscriptions  SubscriptionClient[]
 }
 
 model Attendance {
-  id         Int     @id @default(autoincrement())
-  client     Client  @relation(fields: [clientId], references: [id])
-  clientId   Int
-  date       DateTime
-  spentTime  DateTime
+  id        Int      @id @default(autoincrement())
+  clientId  Int
+  date      DateTime
+  spentTime DateTime
+  client    Client   @relation(fields: [clientId], references: [id])
 }
 
 model Trainer {
-  id            Int     @id @default(autoincrement())
-  email         String  @unique
-  passwordHash  String
-  name          String
-  age           Int
-  gender        String
-  experience    Int
-  price         Float
-  isAdmin       Boolean @default(false)
-
-  clients       Client[]
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  name         String
+  age          Int
+  gender       String
+  experience   Int
+  price        Float
+  isAdmin      Boolean  @default(false)
+  picture      String
+  clients      Client[]
 }
 
 model TrainingProgram {
-  id                Int       @id  @default(autoincrement())
-  name              String
-  dayOfWeek         Int
-  time              DateTime
-
-  clientId          Int
-  client            Client    @relation(fields: [clientId], references: [id])
-  exerciseMachines  ProgramMachine[]
+  id               Int              @id @default(autoincrement())
+  name             String
+  time             DateTime
+  clientId         Int
+  dayOfWeek        Int
+  exerciseMachines ProgramMachine[]
   muscleGroups     ProgramMuscle[]
+  client           Client           @relation(fields: [clientId], references: [id])
 }
 
 model ProgramMachine {
-  trainingProgramId  Int
-  exerciseMachineId  Int
-
-  trainingProgram    TrainingProgram  @relation(fields: [trainingProgramId], references: [id])
-  exerciseMachine    ExerciseMachine  @relation(fields: [exerciseMachineId], references: [id])
+  trainingProgramId Int
+  exerciseMachineId Int
+  exerciseMachine   ExerciseMachine @relation(fields: [exerciseMachineId], references: [id])
+  trainingProgram   TrainingProgram @relation(fields: [trainingProgramId], references: [id])
 
   @@id([trainingProgramId, exerciseMachineId])
 }
 
 model ExerciseMachine {
-  id                Int     @id  @default(autoincrement())
-  name              String  @unique
-  amount            Int
-  pictureLink       String
-  description       String
-
-  trainingPrograms  ProgramMachine[]
+  id               Int              @id @default(autoincrement())
+  name             String           @unique
+  amount           Int
+  description      String
+  picture          String
   muscleGroups     MachineMuscle[]
+  trainingPrograms ProgramMachine[]
 }
 
 model MachineMuscle {
   muscleGroupId     Int
-  exerciseMachineId  Int
-
+  exerciseMachineId Int
+  exerciseMachine   ExerciseMachine @relation(fields: [exerciseMachineId], references: [id])
   muscleGroup       MuscleGroup     @relation(fields: [muscleGroupId], references: [id])
-  exerciseMachine    ExerciseMachine  @relation(fields: [exerciseMachineId], references: [id])
 
   @@id([muscleGroupId, exerciseMachineId])
 }
 
 model MuscleGroup {
-  id                Int     @id  @default(autoincrement())
-  name              String  @unique
-
-  trainingPrograms  ProgramMuscle[]
-  exerciseMachines  MachineMuscle[]
+  id               Int             @id @default(autoincrement())
+  name             String          @unique
+  exerciseMachines MachineMuscle[]
+  trainingPrograms ProgramMuscle[]
 }
 
 model ProgramMuscle {
-  trainingProgramId  Int
+  trainingProgramId Int
   muscleGroupId     Int
-
-  trainingProgram    TrainingProgram  @relation(fields: [trainingProgramId], references: [id])
   muscleGroup       MuscleGroup     @relation(fields: [muscleGroupId], references: [id])
+  trainingProgram   TrainingProgram @relation(fields: [trainingProgramId], references: [id])
 
   @@id([trainingProgramId, muscleGroupId])
 }

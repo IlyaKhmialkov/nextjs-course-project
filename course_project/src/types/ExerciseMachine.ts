@@ -3,5 +3,5 @@ interface IExerciseMachine {
 	name: string
 	amount: number
 	description: string
-	pictureLink: string
+	picture: string
 }
