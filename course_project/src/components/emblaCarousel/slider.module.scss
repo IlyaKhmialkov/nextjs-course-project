@@ -1,0 +1,36 @@
+@use '@colors' as *;
+
+.embla {
+	overflow: hidden;
+	width: 100%;
+}
+.errorDiv {
+	text-align: center;
+	color: red;
+}
+.emblaButtons {
+	width: 100%;
+	margin-top: 20px;
+
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+
+	button {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		background-color: $bgPrimary;
+		border-radius: 20px;
+	}
+	button:first-of-type {
+		padding-right: 2px;
+	}
+	button:last-of-type {
+		padding-left: 2px;
+	}
+}
+.emblaButtons button.disabled {
+	padding: 0;
+}

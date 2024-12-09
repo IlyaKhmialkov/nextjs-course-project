@@ -1,17 +1,14 @@
 'use client'
 
 import { useTrainers } from '@/hooks/trainers/useTrainers'
-import useEmblaCarousel from 'embla-carousel-react'
 import { useEffect, useState } from 'react'
-import { NextButton, PrevButton, usePrevNextButtons } from './sliderArrows'
+import { Slider } from '../emblaCarousel/slider'
+import { TrainersReport } from '../reports/trainersReport'
 import styles from './trainersCards.module.scss'
 
 export function TrainersCards() {
 	const [trainers, setTrainers] = useState<ITrainer[]>([])
 	const { data, isLoading } = useTrainers()
-	const [emblaRef, emblaApi] = useEmblaCarousel({ align: 'start', loop: false })
-
-	const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } = usePrevNextButtons(emblaApi)
 
 	useEffect(() => {
 		if (!isLoading && data) {
@@ -22,10 +19,12 @@ export function TrainersCards() {
 	return (
 		<div className={styles.trainersCards}>
 			{isLoading ? (
-				<h2>Loading...</h2>
+				<div className={styles.loadingDiv}>
+					<h2>Loading...</h2>
+				</div>
 			) : trainers.length ? (
-				<div className={styles.embla}>
-					<div className={styles.emblaViewport} ref={emblaRef}>
+				<>
+					<Slider>
 						<div className={styles.emblaContainer}>
 							{trainers.map((trainer: ITrainer) => (
 								<div className={styles.emblaSlide} key={trainer.id}>
@@ -39,7 +38,7 @@ export function TrainersCards() {
 										<div className={styles.trainerData}>
 											<p>experience: {trainer.experience} years</p>
 											<p>gender: {trainer.gender}</p>
-											<p>price: {trainer.price}$</p>
+											<p>price: {trainer.price}$ / hour</p>
 											<p>
 												email: <a href={`mailto:${trainer.email}`}>{trainer.email}</a>
 											</p>
@@ -48,12 +47,11 @@ export function TrainersCards() {
 								</div>
 							))}
 						</div>
-						<div className={styles.emblaButtons}>
-							<PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
-							<NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
-						</div>
+					</Slider>
+					<div className={styles.reportsDiv}>
+						<TrainersReport trainers={trainers} />
 					</div>
-				</div>
+				</>
 			) : (
 				<div className={styles.errorDiv}>
 					<h2>Trainers not found</h2>

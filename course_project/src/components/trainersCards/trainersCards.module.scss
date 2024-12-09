@@ -7,11 +7,6 @@
 	user-select: none;
 }
 
-.embla {
-	overflow: hidden;
-	width: 100%;
-}
-
 .emblaContainer {
 	display: flex;
 	gap: 20px;
@@ -36,36 +31,20 @@
 	margin: 10px 0;
 }
 
-.errorDiv {
-	text-align: center;
-	color: red;
-}
 .trainerData {
 	text-align: start;
 }
-.emblaButtons {
-	width: 100%;
-	margin-top: 20px;
 
+.loadingDiv {
 	display: flex;
 	justify-content: center;
-	gap: 20px;
-
-	button {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-
-		background-color: $bgPrimary;
-		border-radius: 20px;
-	}
-	button:first-of-type {
-		padding-right: 2px;
-	}
-	button:last-of-type {
-		padding-left: 2px;
-	}
 }
+.reportsDiv {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
 @media (min-width: 1300px) {
 	.emblaSlide {
 		flex: 0 0 calc(33% - 10px);

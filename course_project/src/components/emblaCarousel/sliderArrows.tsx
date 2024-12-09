@@ -1,6 +1,8 @@
 import { EmblaCarouselType } from 'embla-carousel'
 import React, { ComponentPropsWithRef, useCallback, useEffect, useState } from 'react'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
+import { FaXmark } from 'react-icons/fa6'
+import styles from './slider.module.scss'
 
 type UsePrevNextButtonsType = {
 	prevBtnDisabled: boolean
@@ -48,7 +50,12 @@ type PropType = ComponentPropsWithRef<'button'>
 export const PrevButton: React.FC<PropType> = props => {
 	const { children, ...restProps } = props
 
-	return (
+	return props.disabled ? (
+		<button type='button' {...restProps} className={styles.disabled}>
+			<FaXmark size={30} />
+			{children}
+		</button>
+	) : (
 		<button type='button' {...restProps}>
 			<FaAngleLeft size={30} />
 			{children}
@@ -59,7 +66,12 @@ export const PrevButton: React.FC<PropType> = props => {
 export const NextButton: React.FC<PropType> = props => {
 	const { children, ...restProps } = props
 
-	return (
+	return props.disabled ? (
+		<button type='button' {...restProps} className={styles.disabled}>
+			<FaXmark size={30} />
+			{children}
+		</button>
+	) : (
 		<button type='button' {...restProps}>
 			<FaAngleRight size={30} />
 			{children}

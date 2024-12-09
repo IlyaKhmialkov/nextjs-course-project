@@ -1,7 +1,7 @@
 import Excel from 'exceljs'
 import { saveAs } from 'file-saver'
 import { jsPDF } from 'jspdf'
-import styles from './exerciseMachinesReport.module.scss'
+import styles from './reports.module.scss'
 
 interface IExerciseMachinesReportProps {
 	exerciseMachines: IExerciseMachine[]
@@ -54,10 +54,8 @@ export function ExerciseMachinesReport({ exerciseMachines }: IExerciseMachinesRe
 			doc.text(`Generated on: ${currentDate}`, margin, doc.internal.pageSize.getHeight() - 10)
 		}
 
-		const firstId = exerciseMachines[0].id
-
 		exerciseMachines.forEach((machine, index) => {
-			if (machine.id !== firstId) {
+			if (index !== 0) {
 				doc.addPage()
 			}
 
