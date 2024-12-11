@@ -1,7 +1,8 @@
 import { Modal } from '@/components/modal/modal'
+import { useSetJWT } from '@/hooks/useSetJWT'
 import axios from '@/utils/axiosConfig'
-import setJWTFromCookies from '@/utils/setJWTFromCookies'
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
+import { useState } from 'react'
 import { FaEdit, FaRegTrashAlt } from 'react-icons/fa'
 import { IoAddCircleSharp } from 'react-icons/io5'
 import { AddForm } from './addForm'
@@ -10,18 +11,20 @@ import styles from './exerciseMachinesEdit.module.scss'
 
 interface IExerciseMachinesEditProps {
 	exerciseMachines: IExerciseMachine[]
-	setExerciseMachines: Dispatch<SetStateAction<IExerciseMachine[]>>
 }
 
-export function ExerciseMachinesEdit({ exerciseMachines, setExerciseMachines }: IExerciseMachinesEditProps) {
+export function ExerciseMachinesEdit({ exerciseMachines }: IExerciseMachinesEditProps) {
 	const [isModalVisible, setModalVisible] = useState(false)
 	const [isEditModalVisible, setEditModalVisible] = useState(false)
 	const [isAddModalVisible, setAddModalVisible] = useState(false)
 	const [editebleId, setEditebleId] = useState(0)
+	const queryClient = useQueryClient()
 
-	useEffect(() => {
-		setJWTFromCookies()
-	}, [])
+	useSetJWT()
+
+	async function invalidateMachinesQuery() {
+		queryClient.invalidateQueries({ queryKey: ['exerciseMachines'] })
+	}
 
 	async function editHandler(id: number) {
 		setEditebleId(id)
@@ -31,8 +34,7 @@ export function ExerciseMachinesEdit({ exerciseMachines, setExerciseMachines }: 
 	async function deleteHandler(id: number) {
 		try {
 			await axios.delete<IExerciseMachine>(`/exercise-machines/${id}`)
-			const updatedExerciseMachines = exerciseMachines.filter(machine => machine.id !== id)
-			setExerciseMachines(updatedExerciseMachines)
+			await invalidateMachinesQuery()
 		} catch {
 			alert('you should delete all connections related to this machine group')
 		}
@@ -89,16 +91,11 @@ export function ExerciseMachinesEdit({ exerciseMachines, setExerciseMachines }: 
 				<EditForm
 					setModalVisible={setEditModalVisible}
 					id={editebleId}
-					exerciseMachines={exerciseMachines}
-					setExerciseMachines={setExerciseMachines}
+					invalidateMachinesQuery={invalidateMachinesQuery}
 				/>
 			)}
 			{isAddModalVisible && (
-				<AddForm
-					setModalVisible={setAddModalVisible}
-					exerciseMachines={exerciseMachines}
-					setExerciseMachines={setExerciseMachines}
-				/>
+				<AddForm setModalVisible={setAddModalVisible} invalidateMachinesQuery={invalidateMachinesQuery} />
 			)}
 		</div>
 	)

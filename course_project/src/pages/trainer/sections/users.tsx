@@ -1,5 +1,5 @@
 import { Modal } from '@/components/modal/modal'
-import { useClients } from '@/hooks/clients/useClients'
+import { useClients } from '@/hooks/queryHooks/clients/useClients'
 import { useState } from 'react'
 import styles from './section.module.scss'
 

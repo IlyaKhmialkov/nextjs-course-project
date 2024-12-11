@@ -1,6 +1,6 @@
 import { SimpleInputField } from '@/components/inputFields/simpleInputField'
 import { Modal } from '@/components/modal/modal'
-import { useExerciseMachines } from '@/hooks/exerciseMachines/useExerciseMachines'
+import { useExerciseMachines } from '@/hooks/queryHooks/exerciseMachines/useExerciseMachines'
 import { FormEvent, useEffect, useState } from 'react'
 import { FaEdit, FaRegTrashAlt } from 'react-icons/fa'
 import { IoAddCircleSharp } from 'react-icons/io5'

@@ -1,20 +1,12 @@
 'use client'
 
-import { useTrainers } from '@/hooks/trainers/useTrainers'
-import { useEffect, useState } from 'react'
+import { useTrainers } from '@/hooks/queryHooks/trainers/useTrainers'
 import { Slider } from '../emblaCarousel/slider'
 import { TrainersReport } from '../reports/trainersReport'
 import styles from './trainersCards.module.scss'
 
 export function TrainersCards() {
-	const [trainers, setTrainers] = useState<ITrainer[]>([])
 	const { data, isLoading } = useTrainers()
-
-	useEffect(() => {
-		if (!isLoading && data) {
-			setTrainers(data)
-		}
-	}, [data, isLoading])
 
 	return (
 		<div className={styles.trainersCards}>
@@ -22,11 +14,11 @@ export function TrainersCards() {
 				<div className={styles.loadingDiv}>
 					<h2>Loading...</h2>
 				</div>
-			) : trainers.length ? (
+			) : data && data.length ? (
 				<>
 					<Slider>
 						<div className={styles.emblaContainer}>
-							{trainers.map((trainer: ITrainer) => (
+							{data.map((trainer: ITrainer) => (
 								<div className={styles.emblaSlide} key={trainer.id}>
 									<div className={styles.slideContent}>
 										<h2>{trainer.name}</h2>
@@ -49,7 +41,7 @@ export function TrainersCards() {
 						</div>
 					</Slider>
 					<div className={styles.reportsDiv}>
-						<TrainersReport trainers={trainers} />
+						<TrainersReport trainers={data} />
 					</div>
 				</>
 			) : (

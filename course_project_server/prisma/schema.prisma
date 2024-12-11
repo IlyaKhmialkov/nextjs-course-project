@@ -44,7 +44,6 @@ model Attendance {
   id        Int      @id @default(autoincrement())
   clientId  Int
   date      DateTime
-  spentTime DateTime
   client    Client   @relation(fields: [clientId], references: [id])
 }
 

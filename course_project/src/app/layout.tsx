@@ -36,6 +36,7 @@ export default function RootLayout({
 		<html lang='en'>
 			<ReactQueryProvider>
 				<body className={`${oswald.variable} ${openSans.variable}`}>{children}</body>
+				{/* <ReactQueryDevtools initialIsOpen={false} /> */}
 			</ReactQueryProvider>
 		</html>
 	)

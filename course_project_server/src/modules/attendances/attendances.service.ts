@@ -16,6 +16,12 @@ export class AttendancesService {
 			where: { id },
 		})
 	}
+	getByClientId(clientId: number): Promise<Omit<Attendance, 'clientId'>[]> {
+		return this.prisma.attendance.findMany({
+			where: { clientId: clientId },
+			select: { id: true, date: true },
+		})
+	}
 	create(dto: CreateAttendanceDto): Promise<Attendance> {
 		return this.prisma.attendance.create({
 			data: dto,

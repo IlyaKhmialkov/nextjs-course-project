@@ -1,0 +1,87 @@
+@use '@colors' as *;
+
+.main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	min-height: calc(100vh - 140px);
+
+	padding: 30px;
+}
+.notAClientDiv,
+.loadingDiv,
+.infoDiv {
+	background-color: $bgSecondary;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	gap: 15px;
+
+	padding: 20px;
+	border-radius: 20px;
+	border: 2px solid $border;
+}
+.infoHeader {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	h2 {
+		font-size: 36px;
+	}
+	p {
+		font-size: 24px;
+	}
+}
+.attendanceDiv {
+	padding: 20px 0;
+	border-top: 4px double $bgPrimary;
+	border-bottom: 4px double $bgPrimary;
+}
+.form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+}
+.formInputs {
+	display: flex;
+	gap: 10px;
+}
+.submitButton {
+	padding: 4px 8px;
+	width: 210px;
+}
+@media (max-width: 550px) {
+	.infoHeader {
+		h2 {
+			font-size: 30px;
+		}
+		p {
+			font-size: 20px;
+		}
+	}
+}
+@media (max-width: 500px) {
+	.formInputs {
+		flex-direction: column;
+	}
+}
+@media (max-width: 450px) {
+	.infoHeader {
+		p {
+			font-size: 16px;
+		}
+	}
+}
+@media (max-width: 380px) {
+	.infoDiv {
+		padding: 10px;
+	}
+	.infoHeader {
+		p {
+			font-size: 15px;
+		}
+	}
+}

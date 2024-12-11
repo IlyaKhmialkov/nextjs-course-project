@@ -1,5 +1,5 @@
-import { useExerciseMachinesByMuscleName } from '@/hooks/exerciseMachines/useExerciseMachinesByMuscleName'
-import { useExerciseMachinesByName } from '@/hooks/exerciseMachines/useExerciseMachinesByName'
+import { useExerciseMachinesByMuscleName } from '@/hooks/queryHooks/exerciseMachines/useExerciseMachinesByMuscleName'
+import { useExerciseMachinesByName } from '@/hooks/queryHooks/exerciseMachines/useExerciseMachinesByName'
 import { Card } from './card'
 import styles from './card.module.scss'
 
@@ -11,26 +11,16 @@ interface ICardContainerProps {
 }
 
 export function CardContainer({ input, checkbox, exerciseMachines, isDataLoading }: ICardContainerProps) {
-	//  if (input === '') {
-	//    { data, isLoading } = useExerciseMachines()  }
-	//  if (input === '' && checkbox) {
-	//		{ data, isLoading } = useExerciseMachinesByMuscleName()}
-	//  if (input === '' && !checkbox) {
-	//		{ data, isLoading } = useExerciseMachinesByName()}
+	const ExerciseMachinesByMuscleName = useExerciseMachinesByMuscleName(input)
+	const ExerciseMachinesByName = useExerciseMachinesByName(input)
 
 	const { data, isLoading } =
 		input === ''
 			? { data: exerciseMachines, isLoading: isDataLoading }
 			: checkbox
-			? useExerciseMachinesByMuscleName(input)
-			: useExerciseMachinesByName(input)
+			? ExerciseMachinesByMuscleName
+			: ExerciseMachinesByName
 
-	//  if (isLoading) {
-	//    return 4 empty cards
-	//  if (data?.length) {
-	//		return cards whith data
-	//  if (!data?.length) {
-	//		return errorDiv
 	return (
 		<div className={styles.cardContainer}>
 			{isLoading ? (

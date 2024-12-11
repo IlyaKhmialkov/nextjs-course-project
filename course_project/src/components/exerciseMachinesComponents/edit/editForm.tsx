@@ -7,11 +7,10 @@ import styles from './exerciseMachinesEdit.module.scss'
 interface IEditFormProps {
 	setModalVisible: Dispatch<SetStateAction<boolean>>
 	id: number
-	exerciseMachines: IExerciseMachine[]
-	setExerciseMachines: Dispatch<SetStateAction<IExerciseMachine[]>>
+	invalidateMachinesQuery: () => Promise<void>
 }
 
-export function EditForm({ setModalVisible, id, exerciseMachines, setExerciseMachines }: IEditFormProps) {
+export function EditForm({ setModalVisible, id, invalidateMachinesQuery }: IEditFormProps) {
 	async function editSubmitHandler(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault()
 		const formData = new FormData(e.currentTarget)
@@ -22,19 +21,7 @@ export function EditForm({ setModalVisible, id, exerciseMachines, setExerciseMac
 		}
 		const response = await axios.put<IExerciseMachine>(`/exercise-machines/${id}`, data)
 		if (response.status === 200) {
-			const updatedExerciseMachines = exerciseMachines.map(machine => {
-				if (machine.id === id) {
-					return {
-						...machine,
-						name: data.name as string,
-						amount: data.amount,
-						description: data.description as string,
-					}
-				} else {
-					return machine
-				}
-			})
-			setExerciseMachines(updatedExerciseMachines)
+			invalidateMachinesQuery()
 			setModalVisible(false)
 		} else {
 			alert('error')

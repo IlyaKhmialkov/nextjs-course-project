@@ -269,13 +269,13 @@ async function Client() {
 	}
 }
 const AttendanceData = [
-	{ clientId: 1, date: new Date('2024-11-6'), spentTime: new Date(1970, 0, 1, 2, 12, 0, 0) },
-	{ clientId: 1, date: new Date('2024-11-7'), spentTime: new Date(1970, 0, 1, 1, 12, 0, 0) },
-	{ clientId: 2, date: new Date('2024-10-7'), spentTime: new Date(1970, 0, 1, 3, 12, 0, 0) },
-	{ clientId: 2, date: new Date('2023-11-7'), spentTime: new Date(1970, 0, 1, 2, 50, 0, 0) },
-	{ clientId: 3, date: new Date('2024-11-1'), spentTime: new Date(1970, 0, 1, 2, 20, 0, 0) },
-	{ clientId: 4, date: new Date('2024-01-7'), spentTime: new Date(1970, 0, 1, 2, 0, 0, 0) },
-	{ clientId: 5, date: new Date('2024-01-9'), spentTime: new Date(1970, 0, 1, 3, 0, 0, 0) },
+	{ clientId: 1, date: new Date('2024-11-6') },
+	{ clientId: 1, date: new Date('2024-11-7') },
+	{ clientId: 2, date: new Date('2024-10-7') },
+	{ clientId: 2, date: new Date('2023-11-7') },
+	{ clientId: 3, date: new Date('2024-11-1') },
+	{ clientId: 4, date: new Date('2024-01-7') },
+	{ clientId: 5, date: new Date('2024-01-9') },
 ]
 
 async function Attendance() {
@@ -284,7 +284,7 @@ async function Attendance() {
 		await prisma.attendance.upsert({
 			where: { id: i + 1 },
 			update: {},
-			create: { clientId: data.clientId, date: data.date, spentTime: data.spentTime },
+			create: { clientId: data.clientId, date: data.date },
 		})
 	}
 }

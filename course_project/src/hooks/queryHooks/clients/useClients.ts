@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import axios from '../../utils/axiosConfig'
+import axios from '../../../utils/axiosConfig'
 
 const getClients = async () => {
 	return await axios.get<IClient[]>('/clients')

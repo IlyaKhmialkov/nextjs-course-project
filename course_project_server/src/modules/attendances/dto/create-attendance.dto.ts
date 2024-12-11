@@ -1,13 +1,9 @@
-import { IsISO8601, IsMilitaryTime, IsNotEmpty, IsNumber, IsPositive } from 'class-validator'
+import { IsDateString, IsNotEmpty, IsNumber, IsPositive } from 'class-validator'
 
 export class CreateAttendanceDto {
-	@IsISO8601()
+	@IsDateString()
 	@IsNotEmpty()
 	date: string
-
-	@IsMilitaryTime()
-	@IsNotEmpty()
-	spentTime: string
 
 	@IsNumber()
 	@IsNotEmpty()
