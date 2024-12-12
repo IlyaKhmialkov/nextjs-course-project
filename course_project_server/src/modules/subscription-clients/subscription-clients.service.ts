@@ -20,6 +20,9 @@ export class SubscriptionClientsService {
 	getAllSubscriptions(clientId: number): Promise<SubscriptionClient[]> {
 		return this.prisma.subscriptionClient.findMany({
 			where: { clientId },
+			include: {
+				subscription: true,
+			},
 		})
 	}
 	getAllRecords(): Promise<SubscriptionClient[]> {
@@ -27,6 +30,12 @@ export class SubscriptionClientsService {
 	}
 	create(dto: CreateSubscriptionClientDto): Promise<SubscriptionClient> {
 		return this.prisma.subscriptionClient.create({
+			data: dto,
+		})
+	}
+	update(dto: CreateSubscriptionClientDto): Promise<SubscriptionClient> {
+		return this.prisma.subscriptionClient.update({
+			where: { subscriptionId_clientId: { clientId: dto.clientId, subscriptionId: dto.subscriptionId } },
 			data: dto,
 		})
 	}

@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, UseGuards } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common'
 import { AuthGuard } from 'src/guard/auth-guard'
 import { CreateSubscriptionClientDto } from './dto/create-subscription-client.dto'
 import { SubscriptionClientsService } from './subscription-clients.service'
@@ -29,6 +29,12 @@ export class SubscriptionClientsController {
 	@Post('create')
 	create(@Body() dto: CreateSubscriptionClientDto) {
 		return this.subscriptionClientsService.create(dto)
+	}
+
+	@UseGuards(AuthGuard)
+	@Put()
+	update(@Body() dto: CreateSubscriptionClientDto) {
+		return this.subscriptionClientsService.update(dto)
 	}
 
 	@UseGuards(AuthGuard)
