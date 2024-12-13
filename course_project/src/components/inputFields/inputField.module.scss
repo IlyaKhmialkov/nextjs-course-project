@@ -43,6 +43,7 @@
 }
 
 .checkboxDiv {
+	user-select: none;
 	margin-left: 10px;
 	label {
 		display: flex;

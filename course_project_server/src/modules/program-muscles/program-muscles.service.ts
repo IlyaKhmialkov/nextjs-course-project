@@ -20,6 +20,9 @@ export class ProgramMusclesService {
 	getAllMuscleGroups(trainingProgramId: number): Promise<ProgramMuscle[]> {
 		return this.prisma.programMuscle.findMany({
 			where: { trainingProgramId },
+			include: {
+				muscleGroup: true,
+			},
 		})
 	}
 	getAllRecords(): Promise<ProgramMuscle[]> {

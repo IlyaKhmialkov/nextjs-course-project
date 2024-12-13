@@ -16,6 +16,11 @@ export class TrainingProgramsService {
 			where: { id },
 		})
 	}
+	getByClientId(clientId: number): Promise<TrainingProgram[]> {
+		return this.prisma.trainingProgram.findMany({
+			where: { clientId },
+		})
+	}
 	create(dto: CreateTrainingProgramDto): Promise<TrainingProgram> {
 		return this.prisma.trainingProgram.create({
 			data: dto,

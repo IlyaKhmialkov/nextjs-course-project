@@ -1,4 +1,4 @@
-import { IsMilitaryTime, IsNotEmpty, IsNumber, IsPositive, IsString, Max } from 'class-validator'
+import { IsDateString, IsNotEmpty, IsNumber, IsPositive, IsString, Max } from 'class-validator'
 export class CreateTrainingProgramDto {
 	@IsString()
 	@IsNotEmpty()
@@ -10,7 +10,7 @@ export class CreateTrainingProgramDto {
 	@Max(7)
 	dayOfWeek: number
 
-	@IsMilitaryTime()
+	@IsDateString()
 	@IsNotEmpty()
 	time: string
 

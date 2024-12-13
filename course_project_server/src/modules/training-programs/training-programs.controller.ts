@@ -27,6 +27,12 @@ export class TrainingProgramsController {
 	}
 
 	@UseGuards(AuthGuard)
+	@Get('client/:id')
+	getByClientId(@Param('id') id: number) {
+		return this.trainingProgramsService.getByClientId(id)
+	}
+
+	@UseGuards(AuthGuard)
 	@Post('create')
 	async create(@Body() dto: CreateTrainingProgramDto) {
 		return this.trainingProgramsService.create(dto)

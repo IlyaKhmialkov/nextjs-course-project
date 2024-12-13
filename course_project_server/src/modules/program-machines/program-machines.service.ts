@@ -15,6 +15,9 @@ export class ProgramMachinesService {
 	getAllExerciseMachines(trainingProgramId: number): Promise<ProgramMachine[]> {
 		return this.prisma.programMachine.findMany({
 			where: { trainingProgramId },
+			include: {
+				exerciseMachine: true,
+			},
 		})
 	}
 	getAllTrainingPrograms(exerciseMachineId: number): Promise<ProgramMachine[]> {

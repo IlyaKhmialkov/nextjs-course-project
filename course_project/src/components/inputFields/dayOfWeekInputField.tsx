@@ -1,11 +1,11 @@
 import styles from './inputField.module.scss'
 
-interface IIdInputProps {
+interface IDayOfWeekInputProps {
 	id?: string
 }
 
-export function IdInputField({ id }: IIdInputProps) {
-	const inputId = id ? `id-${id}` : 'id'
+export function DayOfWeekInputField({ id }: IDayOfWeekInputProps) {
+	const inputId = id ? `dayOfWeek-${id}` : 'dayOfWeek'
 	return (
 		<div className={styles.inputDiv}>
 			<label htmlFor={inputId}></label>
@@ -15,7 +15,7 @@ export function IdInputField({ id }: IIdInputProps) {
 				id={inputId}
 				name={inputId}
 				autoComplete='off'
-				placeholder='enter id...'
+				placeholder='enter day of week...'
 				required
 			/>
 		</div>
