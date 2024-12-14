@@ -1,7 +1,24 @@
 import { FaPersonHalfDress } from 'react-icons/fa6'
 import styles from './inputField.module.scss'
 
-export function GenderInputField() {
+interface IGenderInputProps {
+	defVal?: string
+}
+
+export function GenderInputField({ defVal }: IGenderInputProps) {
+	let inputProps = {
+		type: 'text',
+		id: 'gender',
+		name: 'gender',
+		placeholder: 'enter your gender',
+		autoComplete: 'on',
+		required: true,
+		defaultValue: '',
+	}
+
+	if (defVal) {
+		inputProps.defaultValue = defVal
+	}
 	return (
 		<div className={styles.inputDiv}>
 			<label htmlFor='gender'>
@@ -9,7 +26,7 @@ export function GenderInputField() {
 					<FaPersonHalfDress size={20} />
 				</div>
 			</label>
-			<input type='text' id='gender' name='gender' placeholder='enter your gender' autoComplete='on' required />
+			<input {...inputProps} />
 		</div>
 	)
 }

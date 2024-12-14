@@ -8,3 +8,25 @@
 	padding: 20px 0;
 	min-height: calc(100vh - 140px);
 }
+.notATrainerDiv,
+.trainerDiv {
+	width: 400px;
+	background-color: $bgSecondary;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	gap: 15px;
+
+	padding: 20px;
+	border-radius: 20px;
+	border: 2px solid $border;
+
+	button {
+		padding: 7.5px 15px;
+	}
+}
+@media (max-width: 500px) {
+	.trainerDiv {
+		width: 300px;
+	}
+}

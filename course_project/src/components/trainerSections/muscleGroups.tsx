@@ -4,7 +4,7 @@ import { useMuscleGroups } from '@/hooks/queryHooks/muscleGroups/useMuscleGroups
 import { FormEvent, useEffect, useState } from 'react'
 import { FaEdit, FaRegTrashAlt } from 'react-icons/fa'
 import { IoAddCircleSharp } from 'react-icons/io5'
-import axios from '../../../utils/axiosConfig'
+import axios from '../../utils/axiosConfig'
 import styles from './section.module.scss'
 
 export function MuscleGroups() {

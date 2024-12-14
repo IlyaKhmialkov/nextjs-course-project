@@ -1,42 +1,51 @@
 'use client'
-import setJWTFromCookies from '@/utils/setJWTFromCookies'
-import { useEffect } from 'react'
-import { ExerciseMachines } from './sections/exerciseMachines'
-import { MachineMuscles } from './sections/machineMuscles'
-import { MuscleGroups } from './sections/muscleGroups'
-import { Users } from './sections/users'
+import { MachineMuscles } from '@/components/trainerSections/machineMuscles'
+import { MuscleGroups } from '@/components/trainerSections/muscleGroups'
+import { Users } from '@/components/trainerSections/users'
+import { useSetJWT } from '@/hooks/useSetJWT'
+import { removeCookies } from '@/utils/logOut'
+import Cookies from 'js-cookie'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import styles from './trainer.module.scss'
 
 export function Trainer() {
+	const router = useRouter()
+	const role = Cookies.get('role')
+	const [isTrainer, setIsTrainer] = useState(true)
+
+	useSetJWT()
+
 	useEffect(() => {
-		setJWTFromCookies()
-	}, [])
+		setIsTrainer(role === 'trainer' || role === 'admin')
+	}, [role])
+
+	function logOut() {
+		removeCookies()
+		router.replace('/')
+	}
 
 	return (
 		<>
 			<main className={styles.main}>
-				<h1>u can do smth whith this data</h1>
-				<Users />
-				<MuscleGroups />
-				<ExerciseMachines />
-				<MachineMuscles />
+				{isTrainer ? (
+					<>
+						<h1>Hello, trainer</h1>
+						<Users />
+						<MuscleGroups />
+						<MachineMuscles />
+						<div className={styles.trainerDiv}>
+							<button onClick={() => logOut()}>log out</button>
+						</div>
+					</>
+				) : (
+					<div className={styles.notATrainerDiv}>
+						<h1>Error</h1>
+						<h2>Sorry, it looks like you are not a trainer of our gym</h2>
+						<p>try register as trainer to get access to this page</p>
+					</div>
+				)}
 			</main>
 		</>
 	)
-}
-
-{
-	/*  		
-	<section className={styles.section}>
-					<h2>exercise machines</h2>
-					<div className={styles.buttonsDiv}>
-						<button>get</button>
-					</div>
-				</section>
-				<section className={styles.section}>
-					<h2>exercise machines and muscle groups</h2>
-					<div className={styles.buttonsDiv}>
-						<button>get</button>
-					</div>
-				</section> */
 }

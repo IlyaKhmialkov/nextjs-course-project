@@ -107,10 +107,15 @@ export function SubscriptionsCards() {
 								</div>
 							</Slider>
 						</div>
-					) : (
+					) : isClientIdValid ? (
 						<div className={styles.clientSubscriptions}>
 							<h2>sorry, but you didn't buy any subscriptions yet</h2>
 							<p>or your subscription has expired</p>
+						</div>
+					) : (
+						<div className={styles.clientSubscriptions}>
+							<h2>sorry, you aren't client and can't buy any subscriptions</h2>
+							<p>try register as client to see yours subscriptions</p>
 						</div>
 					)}
 				</>

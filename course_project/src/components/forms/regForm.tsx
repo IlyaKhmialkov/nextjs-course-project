@@ -35,7 +35,7 @@ export function Form() {
 			}
 		}
 		if (responseData.error) {
-			console.log(responseData.error)
+			alert(responseData.error)
 		}
 	}
 

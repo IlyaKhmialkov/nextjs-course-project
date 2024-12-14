@@ -1,11 +1,20 @@
 'use client'
+import Cookies from 'js-cookie'
 import Link from 'next/link'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { FaBurger } from 'react-icons/fa6'
 import styles from './navigation.module.scss'
 
 export function Navigation() {
+	const [isRole, setIsRole] = useState(true)
+	const [isClient, setIsClient] = useState(false)
+	const role = Cookies.get('role')
 	const linkList = useRef<HTMLUListElement>(null)
+
+	useEffect(() => {
+		setIsRole(!!role)
+		setIsClient(role === 'client')
+	}, [role])
 
 	const burgerHandler = () => {
 		if (linkList && linkList.current) {
@@ -24,9 +33,21 @@ export function Navigation() {
 			</button>
 			<ul ref={linkList} className={styles.linksList}>
 				<li>
-					<Link href={'/profile'} className={styles.navLink}>
-						profile
-					</Link>
+					{isRole ? (
+						isClient ? (
+							<Link href={'/client'} className={styles.navLink}>
+								profile
+							</Link>
+						) : (
+							<Link href={'/trainer'} className={styles.navLink}>
+								profile
+							</Link>
+						)
+					) : (
+						<Link href={'/auth'} className={styles.navLink}>
+							log in
+						</Link>
+					)}
 				</li>
 				<li>
 					<Link href={'/exerciseMachines'} className={styles.navLink}>

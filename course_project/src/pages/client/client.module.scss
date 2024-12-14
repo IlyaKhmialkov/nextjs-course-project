@@ -1,1 +1,37 @@
 @use '@colors' as *;
+
+.main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	min-height: calc(100vh - 140px);
+
+	padding: 30px;
+}
+.notAClientDiv,
+.loadingDiv,
+.infoDiv {
+	background-color: $bgSecondary;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	gap: 15px;
+
+	padding: 20px;
+	border-radius: 20px;
+	border: 2px solid $border;
+}
+.infoHeader {
+	display: flex;
+	flex-direction: column;
+	h2 {
+		font-size: 30px;
+	}
+	p {
+		font-size: 20px;
+	}
+}
+.infoDiv button {
+	padding: 7.5px 15px;
+}
