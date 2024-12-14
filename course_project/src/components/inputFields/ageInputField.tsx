@@ -7,7 +7,7 @@ interface IAgeInputProps {
 
 export function AgeInputField({ defVal }: IAgeInputProps) {
 	let inputProps = {
-		type: 'text',
+		type: 'number',
 		id: 'age',
 		name: 'age',
 		placeholder: 'enter your age',

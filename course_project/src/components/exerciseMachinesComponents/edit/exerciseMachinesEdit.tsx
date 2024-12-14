@@ -18,6 +18,7 @@ export function ExerciseMachinesEdit({ exerciseMachines }: IExerciseMachinesEdit
 	const [isEditModalVisible, setEditModalVisible] = useState(false)
 	const [isAddModalVisible, setAddModalVisible] = useState(false)
 	const [editebleId, setEditebleId] = useState(0)
+	const [editebleMachine, setEditebleMachine] = useState<IExerciseMachine | null>(null)
 	const queryClient = useQueryClient()
 
 	useSetJWT()
@@ -26,8 +27,8 @@ export function ExerciseMachinesEdit({ exerciseMachines }: IExerciseMachinesEdit
 		queryClient.invalidateQueries({ queryKey: ['exerciseMachines'] })
 	}
 
-	async function editHandler(id: number) {
-		setEditebleId(id)
+	async function editHandler(machine: IExerciseMachine) {
+		setEditebleMachine(machine)
 		setEditModalVisible(true)
 	}
 
@@ -66,7 +67,7 @@ export function ExerciseMachinesEdit({ exerciseMachines }: IExerciseMachinesEdit
 										<li className={styles.machineAmount}>{machine.amount}</li>
 										<li className={styles.machinedescription}>{machine.description.substring(0, 100) + '...'}</li>
 										<li className={styles.actionBtn}>
-											<button onClick={() => editHandler(machine.id)}>
+											<button onClick={() => editHandler(machine)}>
 												<FaEdit size={20} color='white' />
 											</button>
 										</li>
@@ -90,7 +91,7 @@ export function ExerciseMachinesEdit({ exerciseMachines }: IExerciseMachinesEdit
 			{isEditModalVisible && (
 				<EditForm
 					setModalVisible={setEditModalVisible}
-					id={editebleId}
+					machine={editebleMachine}
 					invalidateMachinesQuery={invalidateMachinesQuery}
 				/>
 			)}

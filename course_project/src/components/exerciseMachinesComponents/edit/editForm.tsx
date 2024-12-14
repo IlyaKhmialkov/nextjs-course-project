@@ -6,11 +6,11 @@ import styles from './exerciseMachinesEdit.module.scss'
 
 interface IEditFormProps {
 	setModalVisible: Dispatch<SetStateAction<boolean>>
-	id: number
+	machine: IExerciseMachine | null
 	invalidateMachinesQuery: () => Promise<void>
 }
 
-export function EditForm({ setModalVisible, id, invalidateMachinesQuery }: IEditFormProps) {
+export function EditForm({ setModalVisible, machine, invalidateMachinesQuery }: IEditFormProps) {
 	async function editSubmitHandler(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault()
 		const formData = new FormData(e.currentTarget)
@@ -19,7 +19,7 @@ export function EditForm({ setModalVisible, id, invalidateMachinesQuery }: IEdit
 			amount: parseInt(formData.get('simple-amount') as string, 10),
 			description: formData.get('simple-description'),
 		}
-		const response = await axios.put<IExerciseMachine>(`/exercise-machines/${id}`, data)
+		const response = await axios.put<IExerciseMachine>(`/exercise-machines/${machine?.id}`, data)
 		if (response.status === 200) {
 			invalidateMachinesQuery()
 			setModalVisible(false)
@@ -34,15 +34,15 @@ export function EditForm({ setModalVisible, id, invalidateMachinesQuery }: IEdit
 			<form onSubmit={editSubmitHandler}>
 				<div>
 					<p>exercise machine new name</p>
-					<SimpleInputField id='name' />
+					<SimpleInputField id='name' defVal={machine?.name} />
 				</div>
 				<div>
 					<p>new exercise machine new amount</p>
-					<SimpleInputField id='amount' />
+					<SimpleInputField id='amount' defVal={machine?.amount.toString()} />
 				</div>
 				<div>
 					<p>exercise machine new description</p>
-					<SimpleInputField id='description' />
+					<SimpleInputField id='description' defVal={machine?.description} />
 				</div>
 				<button className={styles.submitButton}>submit</button>
 			</form>
