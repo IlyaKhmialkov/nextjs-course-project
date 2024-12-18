@@ -16,6 +16,7 @@ interface IResponse {
 	error?: string
 	token?: string
 	role?: string
+	id?: string
 }
 
 export function Form() {
@@ -27,6 +28,8 @@ export function Form() {
 			Cookies.set('token', responseData.token, { expires: 30 })
 			Cookies.set('role', responseData.role, { expires: 30 })
 			setAuthHeader(responseData.token)
+
+			responseData.id && Cookies.set('id', responseData.id, { expires: 30 })
 
 			if (responseData.role === 'client') {
 				router.replace('/client')

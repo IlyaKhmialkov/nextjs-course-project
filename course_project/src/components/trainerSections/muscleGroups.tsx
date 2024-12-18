@@ -78,7 +78,7 @@ export function MuscleGroups() {
 		<section className={styles.section}>
 			<h2>muscle groups</h2>
 			<div className={styles.buttonsDiv}>
-				<button onClick={() => setModalVisible(true)}>get</button>
+				<button onClick={() => setModalVisible(true)}>get list</button>
 			</div>
 			{isModalVisible && (
 				<Modal onClose={() => setModalVisible(false)}>

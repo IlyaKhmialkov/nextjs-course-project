@@ -13,11 +13,11 @@ export function AgeInputField({ defVal }: IAgeInputProps) {
 		placeholder: 'enter your age',
 		autoComplete: 'on',
 		required: true,
-		defaultValue: 0,
+		defaultValue: '',
 	}
 
 	if (defVal) {
-		inputProps.defaultValue = defVal
+		inputProps.defaultValue = defVal.toString()
 	}
 	return (
 		<div className={styles.inputDiv}>

@@ -9,7 +9,8 @@
 	min-height: calc(100vh - 140px);
 }
 .notATrainerDiv,
-.trainerDiv {
+.trainerDiv,
+.infoHeader {
 	width: 400px;
 	background-color: $bgSecondary;
 	display: flex;
@@ -24,6 +25,22 @@
 	button {
 		padding: 7.5px 15px;
 	}
+}
+.infoHeader {
+	display: flex;
+	flex-direction: column;
+	h2 {
+		font-size: 30px;
+	}
+	p {
+		font-size: 20px;
+	}
+}
+.trainerImage {
+	max-width: 300px;
+	height: auto;
+	border-radius: 999px;
+	margin: 10px 0;
 }
 @media (max-width: 500px) {
 	.trainerDiv {

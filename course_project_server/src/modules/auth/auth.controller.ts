@@ -24,9 +24,9 @@ export class AuthController {
 		if (userData && (await CheckPassword(data.password, userData.passwordHash))) {
 			const role = userData.role
 			const user = { email: data.email, role: role }
-			const clientId = userData.id
+			const id = userData.id
 			const token = sign(user, process.env.JWT_SECRET_KEY, { expiresIn: '30d' })
-			return { token, role, clientId }
+			return { token, role, id }
 		} else {
 			return null
 		}

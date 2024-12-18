@@ -11,7 +11,7 @@ interface IResponse {
 	error?: string
 	token?: string
 	role?: string
-	clientId?: string
+	id?: string
 }
 
 export function Form() {
@@ -23,9 +23,7 @@ export function Form() {
 			Cookies.set('token', responseData.token, { expires: 30 })
 			Cookies.set('role', responseData.role, { expires: 30 })
 
-			responseData.clientId && responseData.role === 'client'
-				? Cookies.set('clientId', responseData.clientId, { expires: 30 })
-				: Cookies.set('clientId', 'trainer', { expires: 30 })
+			responseData.id && Cookies.set('id', responseData.id, { expires: 30 })
 
 			if (responseData.role === 'client') {
 				router.replace('/client')

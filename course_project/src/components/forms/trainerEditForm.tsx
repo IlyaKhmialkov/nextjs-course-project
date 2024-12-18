@@ -4,15 +4,17 @@ import { FormEvent, useState } from 'react'
 import axios from '../../utils/axiosConfig'
 import { AgeInputField } from '../inputFields/ageInputField'
 import { EmailInputField } from '../inputFields/emailInputField'
+import { ExperienceInputField } from '../inputFields/experienceInputField'
 import { GenderInputField } from '../inputFields/genderInputField'
+import { PriceInputField } from '../inputFields/priceInputField'
 import { Modal } from '../modal/modal'
 import styles from './form.module.scss'
 
-interface IClientEditFormProps {
-	client?: IClient
+interface ITrainerEditFormProps {
+	trainer?: ITrainer
 }
 
-export function ClientEditForm({ client }: IClientEditFormProps) {
+export function TrainerEditForm({ trainer }: ITrainerEditFormProps) {
 	const [isModalOpen, setModalOpen] = useState(false)
 	const queryClient = useQueryClient()
 
@@ -24,18 +26,20 @@ export function ClientEditForm({ client }: IClientEditFormProps) {
 		const name = formData.get('name')
 		const age = parseInt(formData.get('age') as string, 10)
 		const gender = formData.get('gender')
+		const experience = parseInt(formData.get('exp') as string, 10)
+		const price = parseInt(formData.get('price') as string, 10)
 
-		const response = await axios.put(`/clients/${client?.id}`, {
-			data: {
-				email: email,
-				name: name,
-				age: age,
-				gender: gender,
-			},
+		const response = await axios.put(`/trainers/${trainer?.id}`, {
+			email: email,
+			name: name,
+			age: age,
+			gender: gender,
+			experience: experience,
+			price: price,
 		})
 
 		if (response.status === 200) {
-			queryClient.invalidateQueries({ queryKey: ['client', client?.id] })
+			queryClient.invalidateQueries({ queryKey: ['trainer', trainer?.id] })
 			setModalOpen(false)
 		}
 	}
@@ -44,10 +48,12 @@ export function ClientEditForm({ client }: IClientEditFormProps) {
 			{isModalOpen && (
 				<Modal onClose={() => setModalOpen(false)}>
 					<form className={styles.form} onSubmit={updateSubmitHandler}>
-						<NameInputField defVal={client?.name} />
-						<EmailInputField defVal={client?.email} />
-						<AgeInputField defVal={client?.age} />
-						<GenderInputField defVal={client?.gender} />
+						<NameInputField defVal={trainer?.name} />
+						<EmailInputField defVal={trainer?.email} />
+						<AgeInputField defVal={trainer?.age} />
+						<GenderInputField defVal={trainer?.gender} />
+						<ExperienceInputField defVal={trainer?.experience} />
+						<PriceInputField defVal={trainer?.price} />
 						<button type='submit' className={styles.submitButton}>
 							update your data
 						</button>

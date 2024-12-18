@@ -11,12 +11,12 @@ import styles from './client.module.scss'
 export function Client() {
 	const router = useRouter()
 	const role = Cookies.get('role')
-	const clientId = Cookies.get('clientId') ?? 'not a client'
+	const clientId = role === 'client' ? Cookies.get('id') ?? 'not a client' : 'not a client'
 	const [isClient, setIsClient] = useState(true)
 	const [isDataValid, setDataValid] = useState(false)
 
 	useEffect(() => {
-		setIsClient(role === 'client' && !!clientId && !isNaN(parseInt(clientId)) && isFinite(parseInt(clientId)))
+		setIsClient(!!clientId && !isNaN(parseInt(clientId)) && isFinite(parseInt(clientId)))
 	}, [role])
 
 	useSetJWT()

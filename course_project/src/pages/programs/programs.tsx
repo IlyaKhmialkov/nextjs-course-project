@@ -12,7 +12,7 @@ import styles from './programs.module.scss'
 export function ProgramsPage() {
 	const [isIdValid, setIdValid] = useState(true)
 	const [isDataValid, setDataValid] = useState(false)
-	const clientId = Cookies.get('clientId') ?? 'not a client'
+	const clientId = Cookies.get('role') === 'client' ? Cookies.get('id') ?? 'not a client' : 'not a client'
 
 	useEffect(() => {
 		setIdValid(!!(clientId && !isNaN(parseInt(clientId)) && isFinite(parseInt(clientId))))

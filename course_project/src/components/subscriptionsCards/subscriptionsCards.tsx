@@ -15,7 +15,7 @@ export function SubscriptionsCards() {
 	const { data, isLoading } = useSubscriptions()
 	const [isClientIdValid, setClientIdValid] = useState(true)
 	const queryClient = useQueryClient()
-	const clientId = Cookies.get('clientId') ?? 'not a client'
+	const clientId = Cookies.get('role') === 'client' ? Cookies.get('id') ?? 'not a client' : 'not a client'
 
 	useEffect(() => {
 		setClientIdValid(!!(clientId && !isNaN(parseInt(clientId)) && isFinite(parseInt(clientId))))

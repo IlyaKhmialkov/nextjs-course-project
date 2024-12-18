@@ -1,12 +1,14 @@
 'use client'
 import { ChangePassword } from '@/components/changePassword/changePassword'
 import { Form } from '@/components/forms/authForm'
+import { removeCookies } from '@/utils/logOut'
 import Link from 'next/link'
 import { useState } from 'react'
 import styles from './auth.module.scss'
 
 export function Auth() {
 	const [isModalVisible, setModalVisible] = useState(false)
+	removeCookies()
 	return (
 		<main className={`${styles.main}`}>
 			{isModalVisible && <ChangePassword setModalVisible={setModalVisible} />}
