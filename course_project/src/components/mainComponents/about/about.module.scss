@@ -17,3 +17,10 @@
 		margin-left: 20px;
 	}
 }
+@media (max-width: 400px) {
+	.about {
+		width: calc(100% - 40px);
+		padding: 20px 10px;
+		text-align: justify;
+	}
+}

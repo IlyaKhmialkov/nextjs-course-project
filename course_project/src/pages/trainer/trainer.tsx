@@ -53,7 +53,6 @@ export function Trainer() {
 								<p>your gender: {trainer.data?.gender}</p>
 								<p>your experience: {trainer.data?.experience}</p>
 								<p>your price: {trainer.data?.price} $ per hour</p>
-								<p>your gender: {trainer.data?.gender}</p>
 							</div>
 							<div className={styles.trainerDiv}>
 								<TrainerEditForm trainer={trainer.data} />

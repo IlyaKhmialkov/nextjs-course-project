@@ -28,3 +28,9 @@
 			1.5px 1.5px 0 $bgPrimary;
 	}
 }
+@media (max-width: 400px) {
+	.bgImgDiv h1 {
+		margin-top: 180px;
+		font-size: 50px;
+	}
+}
